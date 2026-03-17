@@ -54,7 +54,7 @@
 
     .info-bar {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
       margin-bottom: 22px;
     }
@@ -166,34 +166,33 @@
       margin: 0;
     }
 
-   .pill {
-  white-space: nowrap;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 6px 10px;
-  border-radius: 999px;
-}
+    .pill {
+      white-space: nowrap;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
 
-/* Status colors */
-.pill.live {
-  background: #dcfce7;
-  color: #166534;
-}
+    .pill.live {
+      background: #dcfce7;
+      color: #166534;
+    }
 
-.pill.coming {
-  background: #fef9c3;
-  color: #854d0e;
-}
+    .pill.coming {
+      background: #fef9c3;
+      color: #854d0e;
+    }
 
-.pill.expired {
-  background: #fee2e2;
-  color: #991b1b;
-}
+    .pill.expired {
+      background: #fee2e2;
+      color: #991b1b;
+    }
 
-.pill.progress {
-  background: #dbeafe;
-  color: #1e3a8a;
-}
+    .pill.progress {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
 
     .test-meta {
       color: var(--muted);
@@ -263,50 +262,66 @@
 
       <p class="footnote">Only <strong>Live</strong> tests are available.</p>
     </div>
+  </div>
 
   <script>
     const tests = [
-  {
-    title: 'English Test 1',
-    href: 'english-test-1.html',
-    status: 'Live',
-    type: 'live',
-    active: true,
-    footerLabel: 'Time:',
-    footerValue: '1 hour'
-  },
-  {
-    title: 'English Test 2',
-    href: 'english-test-2.html',
-    status: 'Coming Soon',
-    type: 'coming',
-    active: false,
-    footerLabel: 'Status:',
-    footerValue: 'Not Available'
-  },
-  {
-    title: 'Math Test 1',
-    href: 'math-test-1.html',
-    status: 'In Progress',
-    type: 'progress',
-    active: false,
-    footerLabel: 'Status:',
-    footerValue: 'Building'
-  },
-  {
-    title: 'Reading Test 1',
-    href: 'reading-test-1.html',
-    status: 'Expired',
-    type: 'expired',
-    active: false,
-    footerLabel: 'Status:',
-    footerValue: 'Closed'
-  }
-];
+      {
+        title: 'English Test 1',
+        href: 'english-test-1.html',
+        status: 'Live',
+        type: 'live',
+        active: true,
+        meta: 'Instructions-first screen, start button, 1-hour timer, required answers and answer review.',
+        footerLabel: 'Time:',
+        footerValue: '1 hour'
+      },
+      {
+        title: 'English Test 2',
+        href: 'english-test-2.html',
+        status: 'Coming Soon',
+        type: 'coming',
+        active: false,
+        meta: 'Use this card for the next English test. Keep the same instructions and timer format as English Test 1.',
+        footerLabel: 'Status:',
+        footerValue: 'Not Available'
+      },
+      {
+        title: 'Math Test 1',
+        href: 'math-test-1.html',
+        status: 'In Progress',
+        type: 'progress',
+        active: false,
+        meta: 'Add your first math test here later. The portal card is ready for it.',
+        footerLabel: 'Status:',
+        footerValue: 'Building'
+      },
+      {
+        title: 'Reading Test 1',
+        href: 'reading-test-1.html',
+        status: 'Expired',
+        type: 'expired',
+        active: false,
+        meta: 'Use this card for a reading or comprehension assessment when you are ready.',
+        footerLabel: 'Status:',
+        footerValue: 'Closed'
+      }
+    ];
+
+    const sortOrder = {
+      live: 1,
+      progress: 2,
+      coming: 3,
+      expired: 4
+    };
+
+    const sortedTests = [...tests].sort((a, b) => {
+      return (sortOrder[a.type] || 99) - (sortOrder[b.type] || 99);
+    });
 
     const testGrid = document.getElementById('testGrid');
 
-    tests.forEach(test => {
+    sortedTests.forEach(test => {
       const card = document.createElement('a');
       card.className = 'test-card';
       card.href = test.active ? test.href : '#';
