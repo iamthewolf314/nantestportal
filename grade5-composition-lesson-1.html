@@ -301,7 +301,7 @@
       <p class="note">Use the writing process poster above to remember: plan, write, revise, edit and publish.</p>
 
       <div class="question" id="settingTask">
-        <h3>On Your Own</h3>
+        <h3>On Your Own (Optional Planning)</h3>
         <p>Think about an unforgettable experience you have had.</p>
         <p><strong>What tense will you use?</strong></p>
         <input id="tenseInput" type="text" placeholder="Example: past tense">
@@ -338,7 +338,7 @@
       <p><strong>Useful describing words:</strong> tall, handsome, brave, curly hair, bright eyes, well-built, young, short, cruel, rude, dark, fair, cunning, arrogant, miserable</p>
 
       <div class="question" id="characterWordsTask">
-        <h3>On Your Own</h3>
+        <h3>On Your Own (Optional Planning)</h3>
         <p><strong>Write words you can use to describe the main character in your story.</strong></p>
         <textarea id="characterWordsInput" rows="4" placeholder="Example: brave, cheerful, tall, clever, kind"></textarea>
         <div id="characterWordsMessage" class="soft-message"></div>
@@ -405,7 +405,7 @@
 
       <div class="question" id="jackTask">
 
-        <h3>On Your Own</h3>
+        <h3>On Your Own (Optional Planning)</h3>
         <p>Jack is a new boy in your community. Write an introductory paragraph to tell him about yourself.</p>
         <textarea id="jackParagraph" rows="8" placeholder="Write your introductory paragraph here..."></textarea>
         <div class="info-box">
@@ -470,7 +470,7 @@
     <section class="panel" id="resultsPanel">
       <span class="pill">Results</span>
       <h2>My Feedback</h2>
-      <p class="note">Complete every required section, then use the button below to submit all your answers.</p>
+      <p class="note">You can use the planning sections if they help you. When you are finished, submit your work for feedback.</p>
       <div class="feedback-card">
         <button onclick="submitAllWork()">Submit All Answers</button>
         <div id="topSubmitMessage" class="soft-message"></div>
@@ -504,7 +504,7 @@
       </div>
     </section>
 
-    <p class="footer-note">This lesson uses local classroom checks first. AI grading can be connected after the easy checks are passed.</p>
+    <p class="footer-note">This lesson lets you plan freely. AI feedback is given when you submit your writing.</p>
   </main>
 
   <script>
@@ -559,187 +559,9 @@
     }
 
     function validateSettingTask() {
-      const tense = document.getElementById('tenseInput').value.trim();
-      const whenWhere = document.getElementById('whenWhereInput').value.trim();
-      const settingWords = document.getElementById('settingWordsInput').value.trim();
-      const timeOk = /past tense|present tense|future tense/i.test(tense);
-      const hasTimeClue = /yesterday|today|tomorrow|morning|afternoon|evening|night|sunday|monday|friday|last|one day|at night|weekend/i.test(whenWhere);
-      const hasPlaceClue = /beach|school|home|house|park|river|garden|road|aunt|classroom|shop|village|community/i.test(whenWhere);
-      const words = splitItems(settingWords);
-      const settingWordBank = ['windy','dark','bright','muddy','quiet','noisy','rainy','peaceful','rough','salty','crowded','lonely','misty','sunny','cool'];
-      const foundDescriptive = words.filter(w => settingWordBank.includes(w.toLowerCase())).length;
-
-      if (!tense || !whenWhere || !settingWords) {
-        setSoftMessage('settingMessage', false, 'Please complete all three setting questions.');
-        if (!tense) markMissing(document.getElementById('tenseInput'));
-        if (!whenWhere) markMissing(document.getElementById('whenWhereInput'));
-        if (!settingWords) markMissing(document.getElementById('settingWordsInput'));
-        return ['Please complete all setting questions.'];
-      }
-      if (!timeOk) {
-        setSoftMessage('settingMessage', false, 'Please write the tense you will use, such as past tense.');
-        markMissing(document.getElementById('tenseInput'));
-        return ['Write the tense clearly, such as past tense.'];
-      }
-      if (!(hasTimeClue && hasPlaceClue)) {
-        setSoftMessage('settingMessage', false, 'Tell when the story happened and where it happened.');
-        markMissing(document.getElementById('whenWhereInput'));
-        return ['Tell when and where the story takes place.'];
-      }
-      if (words.length < 3 || foundDescriptive < 2) {
-        setSoftMessage('settingMessage', false, 'Add more describing words for the setting, such as windy, quiet, dark or peaceful.');
-        markMissing(document.getElementById('settingWordsInput'));
-        return ['Add at least 3 setting words and make them descriptive.'];
-      }
-      setSoftMessage('settingMessage', true, 'Great. Your setting answers are ready.');
+      setSoftMessage('settingMessage', true, 'This section is optional. Use it if it helps you plan.');
       return [];
     }
-
-    function validateCharacterWordsTask() {
-      const text = document.getElementById('characterWordsInput').value.trim();
-      const words = splitItems(text);
-      const charWordBank = ['brave','kind','friendly','cheerful','tall','short','clever','strong','rude','curious','helpful','funny','quiet','bold','gentle','smart'];
-      const found = words.filter(w => charWordBank.includes(w.toLowerCase())).length;
-      if (!text) {
-        setSoftMessage('characterWordsMessage', false, 'Please write describing words for your character.');
-        markMissing(document.getElementById('characterWordsInput'));
-        return ['Character describing words are missing.'];
-      }
-      if (words.length < 3) {
-        setSoftMessage('characterWordsMessage', false, 'Please write at least 3 describing words.');
-        markMissing(document.getElementById('characterWordsInput'));
-        return ['Write at least 3 describing words for the character.'];
-      }
-      if (found < 2) {
-        setSoftMessage('characterWordsMessage', false, 'Try words like brave, kind, cheerful, clever or tall.');
-        markMissing(document.getElementById('characterWordsInput'));
-        return ['Use stronger describing words for your character.'];
-      }
-      setSoftMessage('characterWordsMessage', true, 'Great. These look like useful character words.');
-      return [];
-    }
-
-    function detectIdentity(text) {
-      return /my name is|i am \d+ years old|i'm \d+ years old|i am a boy|i am a girl/i.test(text);
-    }
-    function detectPhysicalAppearance(text) {
-      return /tall|short|slender|round face|hair|eyes|nose|smile|curly|straight|bright eyes|complexion|skin/i.test(text);
-    }
-    function detectAttitudesHobbies(text) {
-      return /i like|i love|i enjoy|my hobby|my hobbies|i dislike|i do not like|i don't like|favourite|playing|reading|swimming|football|cricket|drawing|singing/i.test(text);
-    }
-    function detectGroups(text) {
-      return /my school|my family|my team|my class|my church|my club|community|belong to/i.test(text);
-    }
-    function detectOtherUseful(text) {
-      return /i live|i help|people say|i am proud|every day|after school|on weekends/i.test(text);
-    }
-    function detectFlow(text) {
-      return /(also|and|because|then|next|after that|finally|when|while)/i.test(text) || splitSentences(text).length >= 3;
-    }
-    function detectCapitalAndPunctuation(text) {
-      const trimmed = text.trim();
-      return /^[A-Z]/.test(trimmed) && /[.!?]\s*$/.test(trimmed);
-    }
-    function detectSpellingLooksOkay(text) {
-      return !/\bi is\b|\bmy hear\b|\bcolor\b|\bfavorite\b|\borganize\b|\bcenter\b/i.test(text);
-    }
-
-    function compareParagraphChecks(text) {
-      const checks = [
-        { id: 'hookCheck', label: 'An introductory or hook statement', found: /i am proud of myself|let me tell you about myself|my name is|i am happy to tell you/i.test(text), fix: 'Add a clear opening sentence to start your paragraph.' },
-        { id: 'identityCheck', label: 'Identity details', found: detectIdentity(text), fix: 'Add your name, age or gender. Example: “My name is Asha. I am ten years old.”' },
-        { id: 'appearanceCheck', label: 'Physical appearance details', found: detectPhysicalAppearance(text), fix: 'Add describing words about how you look, such as tall, curly hair or bright eyes.' },
-        { id: 'hobbyCheck', label: 'Attitudes and hobbies', found: detectAttitudesHobbies(text), fix: 'Add what you like, dislike or enjoy doing.' },
-        { id: 'groupsCheck', label: 'Groups I belong to', found: detectGroups(text), fix: 'Add a group such as your school, family, team or club.' },
-        { id: 'otherCheck', label: 'Other useful details', found: detectOtherUseful(text), fix: 'Add one more helpful detail about yourself.' },
-        { id: 'flowCheck', label: 'Smooth flow', found: detectFlow(text), fix: 'Use linking words like also, because, then or finally.' },
-        { id: 'spellingCheck', label: 'Correct spelling', found: detectSpellingLooksOkay(text), fix: 'Check your spelling carefully and correct any tricky words.' },
-        { id: 'punctCheck', label: 'Capital letters and punctuation', found: detectCapitalAndPunctuation(text), fix: 'Begin with a capital letter and end your sentences with full stops.' }
-      ];
-      return checks.map(item => {
-        const studentChecked = document.getElementById(item.id).checked;
-        return {
-          item: item.label,
-          studentChecked,
-          foundInWriting: item.found,
-          comment: studentChecked && item.found
-            ? 'You checked this and your writing shows it.'
-            : studentChecked && !item.found
-              ? 'You checked this, but I could not clearly find it in your writing yet.'
-              : !studentChecked && item.found
-                ? 'You did include this, even though you did not tick the box.'
-                : 'This was not ticked and it is not clearly shown yet.',
-          fixTip: item.found ? 'Keep it in your writing.' : item.fix
-        };
-      });
-    }
-
-    function validatePlanningChecklist() {
-      const rows = ['plan1','plan2','plan3','plan4','plan5'];
-      if (!rows.every(n => getRadioValue(n))) {
-        setSoftMessage('planMessage', false, 'Please choose Yes or No for every row in the planning checklist.');
-        markMissing(document.getElementById('planTable'));
-        return ['Please complete all rows in the planning checklist.'];
-      }
-      const firstFourAllYes = ['plan1','plan2','plan3','plan4'].every(n => getRadioValue(n) === 'yes');
-      if (!firstFourAllYes) {
-        setSoftMessage('planMessage', false, 'You must have Yes for numbers 1 to 4 for a finished plan.');
-        markMissing(document.getElementById('planTable'));
-        return ['You must have Yes for numbers 1 to 4 for a finished plan.'];
-      }
-      setSoftMessage('planMessage', true, 'Correct, must have yes for numbers 1 to 4');
-      return [];
-    }
-
-    function validateJackParagraph() {
-      const text = document.getElementById('jackParagraph').value.trim();
-      if (!text) {
-        setSoftMessage('jackMessage', false, 'Please write your paragraph before submitting.');
-        markMissing(document.getElementById('jackParagraph'));
-        return ['Jack paragraph is missing.'];
-      }
-      const mismatches = compareParagraphChecks(text).filter(x => x.studentChecked && !x.foundInWriting);
-      if (mismatches.length) {
-        setSoftMessage('jackMessage', false, mismatches[0].comment + ' ' + mismatches[0].fixTip);
-        markMissing(document.getElementById('jackParagraph'));
-        return mismatches.map(x => x.item + ': ' + x.fixTip);
-      }
-      setSoftMessage('jackMessage', true, 'Great. Your checked boxes match what I can see in your paragraph.');
-      return [];
-    }
-
-    function validateRevisionChecklist() {
-      const rows = ['rev1','rev2','rev3','rev4','rev5','rev6','rev7'];
-      if (!rows.every(n => getRadioValue(n))) {
-        setSoftMessage('revisionMessage', false, 'Please complete every Yes or No choice in the revision checklist.');
-        markMissing(document.getElementById('revisionTask'));
-        return ['Please complete every Yes or No choice in the revision checklist.'];
-      }
-      const allYes = rows.every(n => getRadioValue(n) === 'yes');
-      if (allYes) {
-        setSoftMessage('revisionMessage', true, 'Excellent. Your essay meets all the key requirements.');
-      } else {
-        setSoftMessage('revisionMessage', false, 'You still need to revise your essay. Check the areas marked No.');
-      }
-      return [];
-    }
-
-    function validateAthleteComposition() {
-      const text = document.getElementById('athleteComposition').value.trim();
-      if (!text) {
-        setSoftMessage('athleteMessage', false, 'Please write your composition before submitting.');
-        markMissing(document.getElementById('athleteComposition'));
-        return ['Athlete composition is missing.'];
-      }
-      const issues = [];
-      if (countWords(text) < 40) issues.push('Your athlete composition needs more detail. Try writing at least 40 words.');
-      if (!detectCapitalAndPunctuation(text)) issues.push('Your athlete composition needs capital letters and ending punctuation.');
-      if (issues.length) {
-        setSoftMessage('athleteMessage', false, issues[0]);
-        markMissing(document.getElementById('athleteComposition'));
-        return issues;
-      }
       setSoftMessage('athleteMessage', true, 'Good work. Your composition is ready for grading.');
       return [];
     }
@@ -916,27 +738,10 @@
 
     async function submitAllWork() {
       clearMissingMarks();
-
-      const issues = [
-        ...validateSettingTask(),
-        ...validateCharacterWordsTask(),
-        ...validatePlanningChecklist(),
-        ...validateJackParagraph(),
-        ...validateRevisionChecklist(),
-        ...validateAthleteComposition()
-      ];
-
-      if (issues.length) {
-        setSoftMessage('topSubmitMessage', false, 'Please fix the highlighted parts before submitting all answers.');
-        alert('Please fix these before grading:\n\n- ' + issues.join('\n- '));
-        scrollToFirstMissing();
-        return;
-      }
-
       const payload = buildPayload();
 
       try {
-        setSoftMessage('topSubmitMessage', true, 'Great. Your answers passed the classroom checks. Now sending one grading request.');
+        setSoftMessage('topSubmitMessage', true, 'Thanks. Sending your writing for feedback now.');
         const result = await requestGrade(payload);
         renderOverallResults(result);
         setSoftMessage('topSubmitMessage', true, 'Success. Your work has been graded and your feedback is ready below.');
