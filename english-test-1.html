@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Test 1</title>
+  <style>
+    :root {
+      --navy: #163a63;
+      --navy-dark: #0f2742;
+      --sky: #eef4fb;
+      --white: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #d7e3f1;
+      --success: #dff4e7;
+      --success-text: #166534;
+      --danger: #fde8e8;
+      --danger-text: #991b1b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f8fc;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(15, 39, 66, 0.15);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    .hero p {
+      margin: 6px 0;
+      opacity: 0.96;
+    }
+
+    .callout {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin: 16px 0 24px;
+    }
+
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      color: var(--navy-dark);
+      font-size: 1.2rem;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .section-instruction {
+      margin: 0 0 14px 0;
+      line-height: 1.6;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .reference-wrap {
+      max-width: 760px;
+      margin: 18px auto 24px auto;
+      padding: 20px 24px;
+      border: 1px solid #cfd8e3;
+      background: #ffffff;
+      border-radius: 10px;
+    }
+
+    .reference-wrap p {
+      margin: 0 0 14px 0;
+    }
+
+    .reference-list {
+      margin: 0 0 0 25px;
+      line-height: 1.7;
+    }
+
+    .word-bank-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(90px, 1fr));
+      gap: 24px;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .word-bank-grid div {
+      border: 1px solid #444;
+      padding: 8px 10px;
+      background: #fff;
+      font-weight: 500;
+    }
+
+    .passage-wrap {
+      max-width: 760px;
+      margin: 18px auto 24px auto;
+      padding: 20px 24px;
+      border: 1px solid #cfd8e3;
+      background: #ffffff;
+      border-radius: 10px;
+    }
+
+    .passage {
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .passage p {
+      margin: 0 0 14px 0;
+    }
+
+    .ad-section {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .exam-ad {
+      max-width: 600px;
+      margin: 15px auto;
+      padding: 10px;
+      border: 1px solid #bbb;
+      background: #fff;
+      border-radius: 10px;
+    }
+
+    .exam-ad img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .question {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fbfdff;
+      margin-bottom: 14px;
+    }
+
+    .question-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .qnum {
+      font-weight: 700;
+      width: 30px;
+      flex: 0 0 30px;
+    }
+
+    .qcontent {
+      flex: 1;
+    }
+
+    .qtext {
+      margin: 0 0 10px 0;
+      font-weight: 600;
+    }
+
+    .blank {
+      font-weight: 700;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .choices label {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 6px;
+    }
+
+    .choices label:hover {
+      background: var(--sky);
+    }
+
+    .controls {
+      position: sticky;
+      bottom: 0;
+      background: rgba(245, 248, 252, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 14px 0 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-top: 8px;
+    }
+
+    .primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .secondary {
+      background: #e7eef8;
+      color: var(--navy-dark);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 360px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    #result {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      display: none;
+      font-weight: 700;
+    }
+
+    #review {
+      margin-top: 18px;
+      display: none;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .review-item.correct {
+      background: var(--success);
+      color: var(--success-text);
+    }
+
+    .review-item.incorrect {
+      background: var(--danger);
+      color: var(--danger-text);
+    }
+
+    .question.unanswered {
+      border: 2px solid #c62828;
+      background: #fff5f5;
+    }
+
+    .good { background: var(--success); color: var(--success-text); }
+    .bad { background: var(--danger); color: var(--danger-text); }
+
+    .status-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    u {
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 700px) {
+      .wrap { padding: 14px; }
+      .hero { padding: 20px; }
+      .hero h1 { font-size: 1.6rem; }
+      .section { padding: 16px; }
+      .word-bank-grid {
+        grid-template-columns: repeat(2, minmax(90px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>English Test 1</h1>
+      <p>Paper 1 • 40 Questions • Multiple Choice</p>
+    </div>
+
+    <div id="instructionScreen">
+      <div class="callout">
+        <strong>READ THE FOLLOWING INSTRUCTIONS CAREFULLY.</strong>
+        <ol style="margin-top:10px; padding-left:18px; line-height:1.6;">
+          <li>This test has <strong>40 questions</strong>. You have <strong>1 hour</strong> to complete the test.</li>
+          <li>Each question has four suggested answers: <strong>(A), (B), (C) and (D)</strong>. Choose the correct answer.</li>
+          <li>
+            <strong>Sample Question</strong><br><br>
+            Choose the correct spelling of the word which completes the following sentence.<br><br>
+            <strong>Red is Tim’s <span class="blank">______</span> colour.</strong><br><br>
+            (A) favorit<br>
+            (B) favarite<br>
+            (C) faverite<br>
+            (D) favourite<br><br>
+            <strong>Sample Answer:</strong> (D)<br>
+            <em>The correct answer is “favourite,” so (D) is correct.</em>
+          </li>
+          <li>You must answer <strong>all questions</strong> before the test can be submitted.</li>
+          <li>After submitting the test, your <strong>score</strong>, the <strong>correct answers</strong>, and your <strong>completion time</strong> will be displayed.</li>
+        </ol>
+      </div>
+
+      <div class="section" style="padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div>
+          <label for="studentName"><strong>Student Name</strong></label><br>
+          <input id="studentName" type="text" placeholder="Enter student name">
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end;">
+          <div id="timerDisplayIntro" style="font-weight:800; font-size:1.2rem; color:var(--navy-dark);">60:00</div>
+          <div style="font-size:0.9rem; color:var(--muted);">The 1-hour timer will begin when you click <strong>I’m Ready, Start Test</strong>.</div>
+        </div>
+      </div>
+
+      <div class="section" style="text-align:center;">
+        <button type="button" id="startTestBtn" class="primary">I’m Ready, Start Test</button>
+      </div>
+    </div>
+
+    <div id="testScreen" style="display:none;">
+      <div class="section" style="padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div><strong>Time Remaining:</strong> 1 hour</div>
+        <div style="display:flex; gap:18px; align-items:center;">
+          <div id="progressDisplay" style="font-weight:700; color:var(--navy-dark);">0 / 40 answered</div>
+          <div id="timerDisplayTest" style="font-weight:800; font-size:1.2rem; color:var(--navy-dark);">60:00</div>
+        </div>
+      </div>
+
+      <form id="quizForm"></form>
+
+      <div class="controls" id="testControls">
+        <button type="button" id="submitBtn" class="primary">Submit Test</button>
+        <button type="button" id="resetBtn" class="secondary">Reset</button>
+        <div id="result"></div>
+        <div id="saveStatus" class="status-note"></div>
+        <div id="review"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyowo9cN5vIWA0WXDpZwgY3pwqLrcn0oUWOFCt5HIUR4X_NiCstJPYESdhl4DKRgYhO/exec';
+
+    const sections = [
+      {
+        title: 'Questions 1–3',
+        instruction: 'Choose the correct spelling of the word to complete each sentence.',
+        questions: [
+          {n:1, q:'The wedding <span class="blank">______</span> was held at the Government Building.', c:{A:'ceremeny',B:'ciremoney',C:'ceramony',D:'ceremony'}, a:'D'},
+          {n:2, q:'John is the fastest <span class="blank">______</span> on the field.', c:{A:'atlete',B:'athlite',C:'atleeth',D:'athlete'}, a:'D'},
+          {n:3, q:'The winner of the Spelling Bee competition was <span class="blank">______</span> in the library.', c:{A:'anounsed',B:'announsed',C:'announced',D:'anounnced'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Question 4',
+        instruction: 'Select the group of words that is arranged in alphabetical order.',
+        questions: [
+          {n:4, q:'', c:{A:'careless, cement, charming, clock',B:'careless, charming, cement, clock',C:'charming, careless, cement, clock',D:'cement, careless, clock, charming'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 5 and 6',
+        instruction: 'The following words are <u>not</u> arranged in alphabetical order.',
+        reference: `
+          <div class="reference-wrap">
+            <div class="word-bank-grid">
+              <div>culture</div>
+              <div>cylinder</div>
+              <div>clamp</div>
+              <div>compare</div>
+            </div>
+          </div>
+        `,
+        questions: [
+          {n:5, q:'If these words are arranged in alphabetical order, which word would come <u>second</u>?', c:{A:'clamp',B:'culture',C:'cylinder',D:'compare'}, a:'D'},
+          {n:6, q:'If the word <u>craft</u> is added to the list in alphabetical order, which word will it appear <u>before</u>?', c:{A:'clamp',B:'culture',C:'cylinder',D:'compare'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 7–9',
+        instruction: 'Choose the most suitable form of the verb to complete each sentence.',
+        questions: [
+          {n:7, q:'The farmer <span class="blank">___</span> his plants.', c:{A:'is watered',B:'has watered',C:'are watering',D:'were watering'}, a:'B'},
+          {n:8, q:'John <span class="blank">___</span> his new bicycle to school yesterday.', c:{A:'rode',B:'rides',C:'riding',D:'ridden'}, a:'A'},
+          {n:9, q:'Neither the coach nor his players <span class="blank">___</span> enough skills to win the championship.', c:{A:'has',B:'have',C:'is having',D:'was having'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 10–12',
+        instruction: 'Choose the most appropriate word to complete each sentence.',
+        questions: [
+          {n:10, q:'The children decorated <span class="blank">___</span> classroom for the graduation.', c:{A:'their',B:'them',C:'there',D:'they’re'}, a:'A'},
+          {n:11, q:'The teacher <span class="blank">___</span> the students for their lateness.', c:{A:'thanked',B:'praised',C:'scolded',D:'celebrated'}, a:'C'},
+          {n:12, q:'Reading helps to <span class="blank">___</span> our vocabulary.', c:{A:'shrink',B:'reduce',C:'expand',D:'decrease'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Questions 13 and 14',
+        instruction: 'Choose the correct collective noun to complete each sentence.',
+        questions: [
+          {n:13, q:'My cat has a <span class="blank">___</span> of kittens.', c:{A:'litter',B:'class',C:'bunch',D:'school'}, a:'A'},
+          {n:14, q:'The <span class="blank">___</span> of musicians played at the concert.', c:{A:'team',B:'class',C:'band',D:'group'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Questions 15 and 16',
+        instruction: 'The four sentences below are <u>not</u> in the correct order to form a paragraph. Read the sentences carefully and then answer the questions that follow.',
+        reference: `
+          <div class="reference-wrap">
+            <ol class="reference-list">
+              <li>They give birth once every five years.</li>
+              <li>Elephants are the largest mammals on Earth.</li>
+              <li>Their offspring is called a calf.</li>
+              <li>They have massive bodies, huge ears, and extensive trunks.</li>
+            </ol>
+          </div>
+        `,
+        questions: [
+          {n:15, q:'Which sentence should start the paragraph?', c:{A:'Sentence 1',B:'Sentence 2',C:'Sentence 3',D:'Sentence 4'}, a:'B'},
+          {n:16, q:'The correct order of the sentences should be', c:{A:'2, 4, 1, 3',B:'1, 2, 3, 4',C:'2, 1, 4, 3',D:'3, 4, 2, 1'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Question 17',
+        questions: [
+          {n:17, q:'Which of the following words should begin with a capital letter in the sentence below?<br><br>Shivnarine and his talented son, tagenarine are excellent cricketers.', c:{A:'and',B:'his',C:'talented',D:'tagenarine'}, a:'D'}
+        ]
+      },
+      {
+        title: 'Questions 18–20',
+        instruction: 'Choose the word that means the same as the underlined word in each sentence.',
+        questions: [
+          {n:18, q:'The train stopped <u><strong>unexpectedly</strong></u>.', c:{A:'slowly',B:'on time',C:'regularly',D:'suddenly'}, a:'D'},
+          {n:19, q:'The boy focused <u><strong>entirely</strong></u> on his exams.', c:{A:'diverted',B:'targeted',C:'observed',D:'concentrated'}, a:'D'},
+          {n:20, q:'Our Science teacher told us to always <u><strong>protect</strong></u> our environment.', c:{A:'pollute',B:'sanitize',C:'preserve',D:'understand'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Questions 21–23',
+        instruction: 'Choose the word that is opposite in meaning to the underlined word in each sentence.',
+        questions: [
+          {n:21, q:'The police <u><strong>prevented</strong></u> the free flow of traffic.', c:{A:'averted',B:'allowed',C:'stopped',D:'hastened'}, a:'B'},
+          {n:22, q:'The <u><strong>miser</strong></u> always saves his money.', c:{A:'saver',B:'debtor',C:'collector',D:'spendthrift'}, a:'D'},
+          {n:23, q:'The boy swam in the <u><strong>shallow</strong></u> waters of the lake.', c:{A:'deep',B:'rough',C:'muddy',D:'choppy'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 24 and 25',
+        instruction: 'Choose the most suitable conjunction to complete each sentence.',
+        questions: [
+          {n:24, q:'My mother works at the zoo <span class="blank">___</span> she takes me with her sometimes.', c:{A:'for',B:'yet',C:'but',D:'and'}, a:'D'},
+          {n:25, q:'I like football <span class="blank">___</span> I am not good at it.', c:{A:'so',B:'for',C:'but',D:'since'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Question 26',
+        instruction: 'Choose the correct word to complete the sentence.',
+        questions: [
+          {n:26, q:'She kept her <span class="blank">___</span> behind her ears.', c:{A:'hair',B:'here',C:'hear',D:'hare'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Question 27',
+        instruction: 'Choose the correct punctuation mark to complete the sentence.',
+        questions: [
+          {n:27, q:'Letitia, who is a movie star, visited the President <span class="blank">___</span> the Minister and the Mayor.', c:{A:'.',B:'?',C:',',D:'!'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Question 28',
+        instruction: 'Choose the sentence in which punctuation marks are correctly used.',
+        questions: [
+          {n:28, q:'', c:{A:'The teachers were happy with the children’s test scores.',B:'The teachers were happy with the childrens’ test scores.',C:'The teachers were happy with the children’s test scores’.',D:'The teacher’s were happy with the children test scores.'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 29 and 30',
+        instruction: 'Choose the compound word in each sentence.',
+        questions: [
+          {n:29, q:'The <u>sunflower</u> in the garden looked beautiful this morning.', c:{A:'garden',B:'morning',C:'beautiful',D:'sunflower'}, a:'D'},
+          {n:30, q:'The beverage spilled and damaged the <u>tablecloth</u>.', c:{A:'spilled',B:'damaged',C:'tablecloth',D:'beverage'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Questions 31–35',
+        instruction: 'Read the passage carefully and then answer the questions that follow.',
+        reference: `
+          <div class="passage-wrap">
+            <div class="passage">
+              <p>My classmates have all been to a circus before, but not me. They would constantly talk about their experience which made me even more eager to visit the circus, so mom and dad decided that we will go on Saturday.</p>
+              <p>Saturday finally came, and we got dressed and headed to the circus. At the circus, we watched three elephants walk through some big hoops. Next, the clowns came out on unicycles and rode all around the circus tent. The best part was when the trapeze artists walked high above us on a very thin wire. People held their breath as they watched the trapeze artists.</p>
+              <p>Dad got some cotton candy and peanuts for me, and I shared them with my little sister, Marie. Later, some horses came out with riders that were doing tricks, including riding sideways. We took many pictures until finally, it was time to go home, but I will never forget the most fantastic time I had at my first circus!</p>
+            </div>
+          </div>
+        `,
+        questions: [
+          {n:31, q:'What did the clowns ride at the circus?', c:{A:'horses',B:'scooters',C:'elephants',D:'unicycles'}, a:'D'},
+          {n:32, q:'Which word best describes the children in the story?', c:{A:'sad',B:'lonely',C:'excited',D:'worried'}, a:'C'},
+          {n:33, q:'“People held their breath as they watched the trapeze artists.” suggests that the people were:', c:{A:'unable to breathe at the time.',B:'amazed by the skill of the trapeze artists.',C:'hoping that the trapeze artists would fall.',D:'told to hold their breath while the trapeze artists performed.'}, a:'B'},
+          {n:34, q:'Which of the following was described as the best act at the circus?', c:{A:'The clowns riding unicycles',B:'The trapeze artists walking on thin wire',C:'The beautiful gray horses moving sideways',D:'The huge elephants walking through big hoops'}, a:'B'},
+          {n:35, q:'Which of the following titles is most suitable for the passage?', c:{A:'Animals',B:'Family Time',C:'A Day at the Circus',D:'Sharing with the Family'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Questions 36–40',
+        instruction: 'Study the advertisement carefully, and then answer Questions 36–40.',
+        reference: `
+          <div class="ad-section">
+            <div class="exam-ad">
+              <img src="ad.png" alt="Restaurant advertisement">
+            </div>
+          </div>
+        `,
+        questions: [
+          {n:36, q:'How many items can be purchased at the restaurant?', c:{A:'1',B:'2',C:'3',D:'4'}, a:'C'},
+          {n:37, q:'On which day will Manila’s restaurant be closed?', c:{A:'Sunday',B:'Monday',C:'Tuesday',D:'Wednesday'}, a:'A'},
+          {n:38, q:'Which food is <u>not</u> sold at Manila’s Restaurant?', c:{A:'pizza',B:'hotdog',C:'chicken',D:'breadsticks'}, a:'B'},
+          {n:39, q:'Which word suggests that you will be served <u>quickly</u> at the restaurant?', c:{A:'prompt',B:'always',C:'affordable',D:'convenient'}, a:'A'},
+          {n:40, q:'Mary wants to enjoy the free deals offered at the restaurant. When should she visit the restaurant?', c:{A:'January 15, 2023',B:'after January 25, 2023',C:'before January 17, 2023',D:'during January 17, 2023 to January 19, 2023'}, a:'D'}
+        ]
+      }
+    ];
+
+    const form = document.getElementById('quizForm');
+    const TEST_DURATION_SECONDS = 60 * 60;
+    let testStartTime = null;
+    let timerInterval = null;
+    let testStarted = false;
+    let examSubmitted = false;
+    let studentName = '';
+
+    function formatDuration(totalSeconds) {
+      const safeSeconds = Math.max(0, totalSeconds);
+      const hours = Math.floor(safeSeconds / 3600);
+      const minutes = Math.floor((safeSeconds % 3600) / 60);
+      const seconds = safeSeconds % 60;
+      if (hours > 0) {
+        return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function updateIntroTimer() {
+      const introTimer = document.getElementById('timerDisplayIntro');
+      if (introTimer) introTimer.textContent = '60:00';
+    }
+
+    function updateTimer() {
+      if (!testStarted || !testStartTime) return;
+      const elapsedSeconds = Math.floor((Date.now() - testStartTime) / 1000);
+      const remainingTest = TEST_DURATION_SECONDS - elapsedSeconds;
+      const timerDisplay = document.getElementById('timerDisplayTest');
+      if (!timerDisplay) return;
+
+      if (remainingTest >= 0) {
+        timerDisplay.textContent = formatDuration(remainingTest);
+        timerDisplay.style.color = 'var(--navy-dark)';
+      } else {
+        timerDisplay.textContent = `Time elapsed: ${formatDuration(elapsedSeconds)}`;
+        timerDisplay.style.color = '#991b1b';
+      }
+    }
+
+    function startTimer() {
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function buildQuiz() {
+      form.innerHTML = '';
+
+      sections.forEach(section => {
+        const block = document.createElement('section');
+        block.className = 'section';
+
+        const h2 = document.createElement('h2');
+        h2.textContent = section.title;
+        block.appendChild(h2);
+
+        if (section.instruction) {
+          const instruction = document.createElement('div');
+          instruction.className = 'section-instruction';
+          instruction.innerHTML = section.instruction;
+          block.appendChild(instruction);
+        }
+
+        if (section.reference) {
+          const ref = document.createElement('div');
+          ref.innerHTML = section.reference;
+          block.appendChild(ref);
+        }
+
+        section.questions.forEach(item => {
+          const q = document.createElement('div');
+          q.className = 'question';
+          q.setAttribute('data-question', item.n);
+
+          const questionText = item.q ? `<div class="qtext">${item.q}</div>` : '';
+          q.innerHTML = `
+            <div class="question-row">
+              <div class="qnum">${item.n}.</div>
+              <div class="qcontent">
+                ${questionText}
+                <div class="choices"></div>
+              </div>
+            </div>
+          `;
+
+          const choices = q.querySelector('.choices');
+          Object.entries(item.c).forEach(([key, value]) => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="radio" name="q${item.n}" value="${key}"> <strong>(${key})</strong> ${value}`;
+            choices.appendChild(label);
+          });
+
+          block.appendChild(q);
+        });
+
+        form.appendChild(block);
+      });
+
+      attachAnswerListeners();
+      updateSubmitState();
+    }
+
+    function getProgress() {
+      let answered = 0;
+      let total = 0;
+      let unanswered = [];
+
+      sections.forEach(section => {
+        section.questions.forEach(item => {
+          total++;
+          const checked = document.querySelector(`input[name="q${item.n}"]:checked`);
+          if (checked) answered++;
+          else unanswered.push(item.n);
+        });
+      });
+
+      return { answered, total, unanswered };
+    }
+
+    function updateSubmitState() {
+      const progress = getProgress();
+      const submitButton = document.getElementById('submitBtn');
+      const progressDisplay = document.getElementById('progressDisplay');
+      if (submitButton) {
+        submitButton.textContent = progress.answered === progress.total
+          ? 'Submit Test'
+          : `Submit Test (${progress.answered}/${progress.total} answered)`;
+      }
+      if (progressDisplay) {
+        progressDisplay.textContent = `${progress.answered} / ${progress.total} answered`;
+      }
+    }
+
+    function attachAnswerListeners() {
+      document.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', function () {
+          const questionBlock = this.closest('.question');
+          if (questionBlock) questionBlock.classList.remove('unanswered');
+
+          const progress = getProgress();
+          const result = document.getElementById('result');
+
+          if (result.style.display === 'block' && result.textContent.includes('Please answer all questions')) {
+            if (progress.unanswered.length > 0) {
+              result.textContent = `Please answer all questions before submitting. Unanswered: ${progress.unanswered.join(', ')}`;
+            } else {
+              result.style.display = 'none';
+              result.textContent = '';
+              result.className = '';
+            }
+          }
+
+          updateSubmitState();
+        });
+      });
+    }
+
+    async function saveResultToSheet(payload) {
+      const saveStatus = document.getElementById('saveStatus');
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL_HERE')) {
+        saveStatus.textContent = 'Results not saved yet. Add your Google Apps Script URL to turn on automatic logging.';
+        return;
+      }
+
+      try {
+        saveStatus.textContent = 'Saving result...';
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          saveStatus.textContent = 'Result saved successfully.';
+        } else {
+          saveStatus.textContent = 'Result could not be saved automatically.';
+        }
+      } catch (error) {
+        console.error(error);
+        saveStatus.textContent = 'Result could not be saved automatically.';
+      }
+    }
+
+    function startTest() {
+      const nameField = document.getElementById('studentName');
+      if (!nameField) return;
+
+      const name = nameField.value.trim();
+      if (!name) {
+        alert('Please enter your name before starting the test.');
+        nameField.focus();
+        return;
+      }
+
+      studentName = name;
+      document.getElementById('instructionScreen').style.display = 'none';
+      document.getElementById('testScreen').style.display = 'block';
+      testStartTime = Date.now();
+      testStarted = true;
+      startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function gradeQuiz() {
+      const result = document.getElementById('result');
+      const review = document.getElementById('review');
+      const progress = getProgress();
+      let correct = 0;
+      let reviewHtml = '<h3>Answer Review</h3>';
+
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('unanswered'));
+
+      if (progress.unanswered.length > 0) {
+        progress.unanswered.forEach(n => {
+          const block = document.querySelector(`.question[data-question="${n}"]`);
+          if (block) block.classList.add('unanswered');
+        });
+
+        result.style.display = 'block';
+        result.className = 'bad';
+        result.textContent = `Please answer all questions before submitting. Unanswered: ${progress.unanswered.join(', ')}`;
+        review.style.display = 'none';
+        review.innerHTML = '';
+
+        const firstUnanswered = document.querySelector('.question.unanswered');
+        if (firstUnanswered) firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        updateSubmitState();
+        return;
+      }
+
+      sections.forEach(section => {
+        section.questions.forEach(item => {
+          const checked = document.querySelector(`input[name="q${item.n}"]:checked`);
+          const displayQuestion = item.q || 'Choose the correct answer.';
+
+          if (checked && checked.value === item.a) {
+            correct++;
+            reviewHtml += `<div class="review-item correct"><strong>Question ${item.n}:</strong> ${displayQuestion}<br><strong>Result:</strong> Correct<br><strong>Answer:</strong> (${item.a}) ${item.c[item.a]}</div>`;
+          } else if (checked) {
+            reviewHtml += `<div class="review-item incorrect"><strong>Question ${item.n}:</strong> ${displayQuestion}<br><strong>Result:</strong> Incorrect<br><strong>Your answer:</strong> (${checked.value}) ${item.c[checked.value]}<br><strong>Correct answer:</strong> (${item.a}) ${item.c[item.a]}</div>`;
+          }
+        });
+      });
+
+      const percent = Math.round((correct / progress.total) * 100);
+      let performanceMessage = 'Needs Improvement';
+      if (percent >= 90) performanceMessage = 'Excellent';
+      else if (percent >= 70) performanceMessage = 'Pass';
+
+      const finishedSeconds = testStartTime ? Math.floor((Date.now() - testStartTime) / 1000) : 0;
+      const overTime = finishedSeconds > TEST_DURATION_SECONDS;
+      const completionTimeText = formatDuration(finishedSeconds);
+
+      result.style.display = 'block';
+      result.className = percent >= 90 ? 'good' : 'bad';
+      result.innerHTML = `Score: ${correct} / ${progress.total} (${percent}%)<br><strong>${performanceMessage}</strong><br><strong>Completion Time:</strong> ${completionTimeText}${overTime ? ' <span style="color:#991b1b;">(submitted after 1 hour)</span>' : ''}`;
+
+      reviewHtml = `<div class="review-item"><strong>Student Name:</strong> ${studentName}<br><strong>Completion Time:</strong> ${completionTimeText}${overTime ? ' <span style="color:#991b1b;">(submitted after 1 hour)</span>' : ''}</div>` + reviewHtml;
+      review.innerHTML = reviewHtml;
+      review.style.display = 'block';
+
+      const submitBtn = document.getElementById('submitBtn');
+      if (submitBtn) submitBtn.style.display = 'none';
+
+      if (timerInterval) clearInterval(timerInterval);
+      examSubmitted = true;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateSubmitState();
+
+      await saveResultToSheet({
+        studentName: studentName,
+        testName: 'English Test 1',
+        score: correct,
+        total: progress.total,
+        percent: percent,
+        performance: performanceMessage,
+        completionTime: completionTimeText,
+        overtime: overTime ? 'Yes' : 'No',
+        submittedAt: new Date().toISOString()
+      });
+    }
+
+    function resetQuiz() {
+      window.location.reload();
+    }
+
+    window.addEventListener('beforeunload', function (e) {
+      if (!examSubmitted && testStarted) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
+    document.getElementById('startTestBtn').addEventListener('click', startTest);
+    document.getElementById('submitBtn').addEventListener('click', gradeQuiz);
+    document.getElementById('resetBtn').addEventListener('click', resetQuiz);
+
+    buildQuiz();
+    updateIntroTimer();
+  </script>
+</body>
+</html>
