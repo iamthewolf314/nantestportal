@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathematics Test 1 (NGSA 24 P1)</title>
+  <style>
+    :root { --navy:#163a63; --navy-dark:#0f2742; --sky:#eef4fb; --white:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#d7e3f1; --success:#dff4e7; --success-text:#166534; --danger:#fde8e8; --danger-text:#991b1b; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#f5f8fc; color:var(--text); line-height:1.45; }
+    .wrap { max-width:980px; margin:0 auto; padding:24px; }
+    .hero { background:var(--navy); color:var(--white); border-radius:18px; padding:28px; box-shadow:0 8px 24px rgba(15,39,66,.15); margin-bottom:20px; }
+    .hero h1 { margin:0 0 8px; font-size:2rem; }
+    .hero p { margin:6px 0; opacity:.96; }
+    .callout { background:var(--navy); color:var(--white); border-radius:14px; padding:14px 18px; margin:16px 0 24px; }
+    .section { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:22px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,.04); }
+    .section h2 { margin:0 0 12px; color:var(--navy-dark); font-size:1.2rem; text-decoration:underline; text-underline-offset:2px; }
+    .section-instruction { margin:0 0 14px 0; line-height:1.6; color:var(--text); font-weight:700; font-size:1.05rem; }
+    .reference-wrap { max-width:760px; margin:18px auto 24px auto; padding:20px 24px; border:1px solid #cfd8e3; background:#ffffff; border-radius:10px; }
+    .reference-wrap p { margin:0 0 14px 0; }
+    .reference-image { max-width:760px; margin:16px auto; border:1px solid #bbb; border-radius:8px; background:#fff; padding:8px; }
+    .reference-image img { width:100%; height:auto; display:block; border-radius:4px; }
+    .question { padding:16px; border:1px solid var(--border); border-radius:14px; background:#fbfdff; margin-bottom:14px; }
+    .question-row { display:flex; gap:10px; align-items:flex-start; }
+    .qnum { font-weight:700; width:30px; flex:0 0 30px; }
+    .qcontent { flex:1; }
+    .qtext { margin:0 0 10px 0; font-weight:600; }
+    .choices label { display:block; padding:8px 10px; border-radius:10px; cursor:pointer; margin-bottom:6px; }
+    .choices label:hover { background:var(--sky); }
+    .controls { position:sticky; bottom:0; background:rgba(245,248,252,.95); backdrop-filter:blur(8px); padding:14px 0 20px; }
+    button { border:none; border-radius:12px; padding:14px 18px; font-weight:700; cursor:pointer; margin-right:10px; margin-top:8px; }
+    .primary { background:var(--navy); color:var(--white); }
+    .secondary { background:#e7eef8; color:var(--navy-dark); }
+    input[type="text"] { width:100%; max-width:360px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-size:1rem; margin-top:8px; }
+    #result { margin-top:18px; padding:18px; border-radius:14px; display:none; font-weight:700; }
+    #review { margin-top:18px; display:none; }
+    .review-item { border:1px solid var(--border); border-radius:12px; padding:12px; background:var(--white); margin-bottom:10px; }
+    .review-item.correct { background:var(--success); color:var(--success-text); }
+    .review-item.incorrect { background:var(--danger); color:var(--danger-text); }
+    .question.unanswered { border:2px solid #c62828; background:#fff5f5; }
+    .good { background:var(--success); color:var(--success-text); }
+    .bad { background:var(--danger); color:var(--danger-text); }
+    .status-note { margin-top:10px; color:var(--muted); font-size:.95rem; }
+    @media (max-width:700px){ .wrap{padding:14px;} .hero{padding:20px;} .hero h1{font-size:1.6rem;} .section{padding:16px;} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Mathematics Test 1 (NGSA 24 P1)</h1>
+      <p>Paper 1 • 40 Questions • Multiple Choice</p>
+    </div>
+
+    <div id="instructionScreen">
+      <div class="callout">
+        <strong>READ THE FOLLOWING INSTRUCTIONS CAREFULLY.</strong>
+        <ol style="margin-top:10px; padding-left:18px; line-height:1.6;">
+          <li>This test has <strong>40 questions</strong>. You have <strong>1 hr</strong> to complete the test.</li>
+          <li>Each question has four suggested answers: <strong>(A), (B), (C) and (D)</strong>. Choose the correct answer.</li>
+          <li>
+            <strong>Sample Question</strong><br><br>
+            The sum of 4 and 5 is<br><br>
+            (A) 1<br>
+            (B) 9<br>
+            (C) 2<br>
+            (D) 45<br><br>
+            <strong>Sample Answer:</strong> (B)<br>
+            <em>The correct answer is “9”, so (B) is correct.</em>
+          </li>
+          <li>You must answer <strong>all questions</strong> before the test can be submitted.</li>
+          <li><strong>Calculators must not be used</strong> for this test. Rough work may be done separately.</li>
+          <li>After submitting the test, your <strong>score</strong>, the <strong>correct answers</strong>, and your <strong>completion time</strong> will be displayed.</li>
+        </ol>
+      </div>
+
+      <div class="section" style="padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; gap:14px; min-width:320px;">
+          <div>
+            <label for="studentName"><strong>Student Name (Required)</strong></label><br>
+            <input id="studentName" type="text" placeholder="Enter student name">
+          </div>
+          <div>
+            <label for="parentEmail"><strong>Parent Email (Optional)</strong></label><br>
+            <input id="parentEmail" type="email" placeholder="Enter parent email">
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+          <div><strong>Total Time:</strong> 1 hr</div>
+          <div id="timerDisplayIntro" style="font-weight:800; font-size:1.2rem; color:var(--navy-dark);">60:00</div>
+          <div style="font-size:0.9rem; color:var(--muted);">The timer will begin when you click <strong>I’m Ready, Start Test</strong>.</div>
+        </div>
+      </div>
+
+      <div class="section" style="text-align:center;">
+        <button type="button" id="startTestBtn" class="primary">I’m Ready, Start Test</button>
+      </div>
+    </div>
+
+    <div id="testScreen" style="display:none;">
+      <div class="section" style="padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+          <div><strong>Total Time:</strong> 1 hr</div>
+          <div id="progressDisplay" style="font-weight:700; color:var(--navy-dark);">0 / 40 answered</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <div style="font-weight:700; color:var(--navy-dark);">Time Remaining</div>
+          <div id="timerDisplayTest" style="font-weight:800; font-size:1.2rem; color:var(--navy-dark);">60:00</div>
+        </div>
+      </div>
+
+      <form id="quizForm"></form>
+
+      <div class="controls" id="testControls">
+        <button type="button" id="submitBtn" class="primary">Submit Test</button>
+        <button type="button" id="resetBtn" class="secondary">Reset</button>
+        <div id="result"></div>
+        <div id="saveStatus" class="status-note"></div>
+        <div id="review"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyowo9cN5vIWA0WXDpZwgY3pwqLrcn0oUWOFCt5HIUR4X_NiCstJPYESdhl4DKRgYhO/exec';
+    const sections = [
+      {
+        title: 'Questions 1–4',
+        instruction: 'Choose the correct answer for each question.',
+        questions: [
+          {n:1, q:'Which of the following represents the number 6 781 in its expanded form?', c:{A:'60 + 70 + 8 + 1', B:'600 + 700 + 80 + 10', C:'6 000 + 70 + 80 + 10', D:'6 000 + 700 + 80 + 1'}, a:'D'},
+          {n:2, q:'What is the value of 2 in 3 250?', c:{A:'2', B:'20', C:'200', D:'2 000'}, a:'C'},
+          {n:3, q:'Which of the following is a common multiple of 3 and 7?', c:{A:'21', B:'24', C:'28', D:'32'}, a:'A'},
+          {n:4, q:'Which of the following groups of numbers has factors of both 18 and 27?', c:{A:'1, 3, 6', B:'1, 3, 9', C:'3, 9, 18', D:'3, 18, 27'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 5–7',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page3.png" alt="Reference for Questions 6 and 7"></div>',
+        questions: [
+          {n:5, q:'Which of the following numbers is exactly divisible by 4?', c:{A:'15', B:'26', C:'45', D:'60'}, a:'D'},
+          {n:6, q:'Which two numbers will complete the sequence below?', c:{A:'13 and 41', B:'15 and 35', C:'16 and 40', D:'20 and 50'}, a:'A'},
+          {n:7, q:'The figures below are made up of identical squares. How many identical squares would be in figure 5?', c:{A:'12', B:'16', C:'25', D:'28'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 8 and 9',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page4.png" alt="Reference for Question 9"></div>',
+        questions: [
+          {n:8, q:'Which of the following number sentences is correct?', c:{A:'6 ÷ 7 = 6 × 7', B:'6 × 7 = 7 × 6', C:'7 + 6 = 7 - 6', D:'7 - 6 = 6 - 7'}, a:'B'},
+          {n:9, q:'Which of the following pairs of sets is equal?', c:{A:'Option A', B:'Option B', C:'Option C', D:'Option D'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 10 and 11',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page5.png" alt="Reference for Question 11"></div>',
+        questions: [
+          {n:10, q:'Which of the following describes an empty set?', c:{A:'{ Even numbers from 1 to 5 }', B:'{ Months of the year with 31 days }', C:'{ Countries beginning with the letter B }', D:'{ Days of the week beginning with the letter Z }'}, a:'D'},
+          {n:11, q:'Which of the following is a subset of Set A?', c:{A:'Option A', B:'Option B', C:'Option C', D:'Option D'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 12–17',
+        instruction: 'Choose the correct answer for each question.',
+        questions: [
+          {n:12, q:'The average of a set of numbers is 12. The sum of these numbers is 48. How many numbers are in the set?', c:{A:'3', B:'4', C:'12', D:'28'}, a:'B'},
+          {n:13, q:'What is the value of 5 510 – 298?', c:{A:'212', B:'5 298', C:'5 212', D:'5 808'}, a:'C'},
+          {n:14, q:'What is the average of Roy’s test scores: 57, 75, 62, 83, 78?', c:{A:'62', B:'71', C:'300', D:'355'}, a:'B'},
+          {n:15, q:'24 ÷ 2 + 5 × 2 can be simplified as', c:{A:'22', B:'33', C:'34', D:'58'}, a:'A'},
+          {n:16, q:'Which of the following numbers will correctly complete the number sentence x × 10 – 5 = 25?', c:{A:'2', B:'3', C:'5', D:'8'}, a:'B'},
+          {n:17, q:'What is 0.25 written as a fraction?', c:{A:'1/4', B:'1/2', C:'5/8', D:'3/4'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 18 and 19',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page8.png" alt="Reference for Question 18"></div>',
+        questions: [
+          {n:18, q:'What fraction of the shape below is unshaded?', c:{A:'2/9', B:'4/9', C:'3/9', D:'5/9'}, a:'B'},
+          {n:19, q:'Which of the following numbers will correctly complete the number sentence 34.5 ÷ ____ = 3.45?', c:{A:'1', B:'10', C:'100', D:'1000'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 20 and 21',
+        instruction: 'Study the reference image and then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page9.png" alt="Reference for Question 20"></div>',
+        questions: [
+          {n:20, q:'When the fractions are arranged in descending order, which fruit would appear third?', c:{A:'Pear', B:'Oranges', C:'Mangoes', D:'Tangerine'}, a:'B'},
+          {n:21, q:'The fraction 3 5/9 is the same as', c:{A:'32/9', B:'17/9', C:'12/9', D:'8/9'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 22 and 23',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page10.png" alt="Reference for Question 23"></div>',
+        questions: [
+          {n:22, q:'Which of the following fractions is equivalent to 1/5?', c:{A:'2/5', B:'4/5', C:'4/10', D:'3/15'}, a:'D'},
+          {n:23, q:'Which of the following shapes has all its interior angles equal?', c:{A:'i', B:'ii', C:'iii', D:'iv'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 24 and 25',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page11.png" alt="Reference for Question 25"></div>',
+        questions: [
+          {n:24, q:'Which of the following solids is correctly matched to its properties?', c:{A:'Cone — Two curved and one flat surface', B:'Cylinder — One curved and two flat surfaces', C:'Cube — Six flat surfaces and four straight edges', D:'Cuboid — Four flat surfaces and eight straight edges'}, a:'B'},
+          {n:25, q:'If AB is the line of symmetry, how many rectangles must be added to make the shape symmetrical?', c:{A:'1', B:'3', C:'4', D:'6'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 26 and 27',
+        instruction: 'Study the reference image and then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page12.png" alt="Reference for Questions 26 and 27"></div>',
+        questions: [
+          {n:26, q:'Which of the following solids are represented by the nets above?', c:{A:'Cone and Cuboid', B:'Cube and Cuboid', C:'Cylinder and Cone', D:'Cuboid and Cylinder'}, a:'D'},
+          {n:27, q:'What is the sum of angles r and s?', c:{A:'90°', B:'180°', C:'270°', D:'360°'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 28 and 29',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page13.png" alt="Reference for Questions 28 and 29"></div>',
+        questions: [
+          {n:28, q:'Which unit of measurement would most likely be used to show the mass of the items?', c:{A:'Pints', B:'Litres', C:'Grams', D:'Metres'}, a:'C'},
+          {n:29, q:'How is the time shown on the clock written using the 24-hour format?', c:{A:'07:00 h', B:'19:00 h', C:'20:00 h', D:'23:00 h'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 30 and 31',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page14.png" alt="Reference for Question 31"></div>',
+        questions: [
+          {n:30, q:'Rita has a piece of ribbon that is 5 m long. She needs to cut it into smaller pieces that are 50 cm each. How many 50 cm pieces will she get?', c:{A:'1', B:'5', C:'10', D:'25'}, a:'C'},
+          {n:31, q:'What is the perimeter of the shape?', c:{A:'40 cm', B:'46 cm', C:'51 cm', D:'60 cm'}, a:'B'}
+        ]
+      },
+      {
+        title: 'Questions 32 and 33',
+        instruction: 'Study the reference image and then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page15.png" alt="Reference for Questions 32 and 33"></div>',
+        questions: [
+          {n:32, q:'The grid is covered with 12 square tiles. If each tile has a length of 10 cm, what is the area of the grid?', c:{A:'100 cm²', B:'120 cm²', C:'1 200 cm²', D:'2 000 cm²'}, a:'C'},
+          {n:33, q:'What fraction of the total fruits is cherries?', c:{A:'2/4', B:'4/6', C:'6/10', D:'2/5'}, a:'D'}
+        ]
+      },
+      {
+        title: 'Questions 34 and 35',
+        instruction: 'Study the reference image where needed, then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page16.png" alt="Reference for Question 35"></div>',
+        questions: [
+          {n:34, q:'Jane bought a backpack for $4 000 and sold it back for $4 800. What was her profit?', c:{A:'$200', B:'$800', C:'$4 000', D:'$8 800'}, a:'B'},
+          {n:35, q:'Roy bought a bicycle for $15 000 and later sold it for $12 580. What was his loss?', c:{A:'$1 000', B:'$1 580', C:'$2 420', D:'$3 420'}, a:'C'}
+        ]
+      },
+      {
+        title: 'Questions 36 and 37',
+        instruction: 'Study the reference image and then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page17.png" alt="Reference for Questions 36 and 37"></div>',
+        questions: [
+          {n:36, q:'What is the cost for 3 pumpkins and 1 watermelon?', c:{A:'$3 150', B:'$3 615', C:'$4 350', D:'$1 115'}, a:'A'},
+          {n:37, q:'Susan bought 2 pumpkins, 1 watermelon and 3 squash at the market. She paid with a $5 000 bill. How much change did she receive?', c:{A:'$405', B:'$1 700', C:'$3 065', D:'$4 595'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 38–40',
+        instruction: 'Study the pictograph and then answer the questions that follow.',
+        reference: '<div class="reference-image"><img src="./page18.png" alt="Reference for Questions 38 to 40"></div>',
+        questions: [
+          {n:38, q:'Which class has the most pupils?', c:{A:'Grade 5A', B:'Grade 5B', C:'Grade 5C', D:'Grade 5D'}, a:'D'},
+          {n:39, q:'How many pupils are in Grade 5 A and B altogether?', c:{A:'5 pupils', B:'7 pupils', C:'15 pupils', D:'35 pupils'}, a:'D'},
+          {n:40, q:'What is the average number of pupils in Grade 5?', c:{A:'4', B:'5', C:'15', D:'20'}, a:'C'}
+        ]
+      }
+    ];
+
+    const form = document.getElementById('quizForm');
+    const TEST_DURATION_SECONDS = 60 * 60;
+    let testStartTime = null;
+    let timerInterval = null;
+    let testStarted = false;
+    let examSubmitted = false;
+    let studentName = '';
+    let parentEmail = '';
+
+    function formatDuration(totalSeconds) {
+      const safeSeconds = Math.max(0, totalSeconds);
+      const hours = Math.floor(safeSeconds / 3600);
+      const minutes = Math.floor((safeSeconds % 3600) / 60);
+      const seconds = safeSeconds % 60;
+      if (hours > 0) return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    function updateTimer() {
+      if (!testStarted || !testStartTime) return;
+      const elapsedSeconds = Math.floor((Date.now() - testStartTime) / 1000);
+      const remaining = TEST_DURATION_SECONDS - elapsedSeconds;
+      const timerDisplay = document.getElementById('timerDisplayTest');
+      if (remaining >= 0) {
+        timerDisplay.textContent = formatDuration(remaining);
+        timerDisplay.style.color = 'var(--navy-dark)';
+      } else {
+        timerDisplay.textContent = `+${formatDuration(Math.abs(remaining))}`;
+        timerDisplay.style.color = '#991b1b';
+      }
+    }
+    function startTimer() { updateTimer(); timerInterval = setInterval(updateTimer, 1000); }
+
+    function buildQuiz() {
+      form.innerHTML = '';
+      sections.forEach(section => {
+        const block = document.createElement('section');
+        block.className = 'section';
+        const h2 = document.createElement('h2');
+        h2.textContent = section.title;
+        block.appendChild(h2);
+        if (section.instruction) {
+          const ins = document.createElement('div');
+          ins.className = 'section-instruction';
+          ins.innerHTML = section.instruction;
+          block.appendChild(ins);
+        }
+        if (section.reference) {
+          const ref = document.createElement('div');
+          ref.innerHTML = section.reference;
+          block.appendChild(ref);
+        }
+        section.questions.forEach(item => {
+          const q = document.createElement('div');
+          q.className = 'question';
+          q.setAttribute('data-question', item.n);
+          const questionText = item.q ? `<div class="qtext">${item.q}</div>` : '';
+          q.innerHTML = `<div class="question-row"><div class="qnum">${item.n}.</div><div class="qcontent">${questionText}<div class="choices"></div></div></div>`;
+          const choices = q.querySelector('.choices');
+          Object.entries(item.c).forEach(([k,v])=>{
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="radio" name="q${item.n}" value="${k}"> <strong>(${k})</strong> ${v}`;
+            choices.appendChild(label);
+          });
+          block.appendChild(q);
+        });
+        form.appendChild(block);
+      });
+      attachAnswerListeners();
+      updateSubmitState();
+    }
+
+    function getProgress() {
+      let answered = 0, total = 0, unanswered = [];
+      sections.forEach(section => section.questions.forEach(item => {
+        total++;
+        const checked = document.querySelector(`input[name="q${item.n}"]:checked`);
+        if (checked) answered++; else unanswered.push(item.n);
+      }));
+      return {answered,total,unanswered};
+    }
+    function updateSubmitState() {
+      const progress = getProgress();
+      const submitButton = document.getElementById('submitBtn');
+      const progressDisplay = document.getElementById('progressDisplay');
+      if (submitButton) submitButton.textContent = progress.answered === progress.total ? 'Submit Test' : `Submit Test (${progress.answered}/${progress.total} answered)`;
+      if (progressDisplay) progressDisplay.textContent = `${progress.answered} / ${progress.total} answered`;
+    }
+    function attachAnswerListeners() {
+      document.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', function() {
+          const questionBlock = this.closest('.question');
+          if (questionBlock) questionBlock.classList.remove('unanswered');
+          const progress = getProgress();
+          const result = document.getElementById('result');
+          if (result.style.display === 'block' && result.textContent.includes('Please answer all questions')) {
+            if (progress.unanswered.length > 0) result.textContent = `Please answer all questions before submitting. Unanswered: ${progress.unanswered.join(', ')}`;
+            else { result.style.display = 'none'; result.textContent = ''; result.className=''; }
+          }
+          updateSubmitState();
+        });
+      });
+    }
+    async function saveResultToSheet(payload) {
+      const saveStatus = document.getElementById('saveStatus');
+      try {
+        saveStatus.textContent = 'Saving result...';
+        const response = await fetch(GOOGLE_SCRIPT_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload)});
+        saveStatus.textContent = response.ok ? 'Result saved successfully.' : 'Result could not be saved automatically.';
+      } catch (error) {
+        console.error(error);
+        saveStatus.textContent = 'Result could not be saved automatically.';
+      }
+    }
+    function startTest() {
+      const nameField = document.getElementById('studentName');
+      if (!nameField) return;
+      const name = nameField.value.trim();
+      if (!name) { alert('Please enter your name before starting the test.'); nameField.focus(); return; }
+      studentName = name;
+      document.getElementById('instructionScreen').style.display = 'none';
+      document.getElementById('testScreen').style.display = 'block';
+      testStartTime = Date.now(); testStarted = true; startTimer(); window.scrollTo({top:0, behavior:'smooth'});
+    }
+    async function gradeQuiz() {
+      const result = document.getElementById('result');
+      const review = document.getElementById('review');
+      const progress = getProgress();
+      let correct = 0;
+      let reviewHtml = '<h3>Answer Review</h3>';
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('unanswered'));
+      if (progress.unanswered.length > 0) {
+        progress.unanswered.forEach(n => { const block = document.querySelector(`.question[data-question="${n}"]`); if (block) block.classList.add('unanswered'); });
+        result.style.display = 'block';
+        result.className = 'bad';
+        result.textContent = `Please answer all questions before submitting. Unanswered: ${progress.unanswered.join(', ')}`;
+        review.style.display = 'none'; review.innerHTML = '';
+        const firstUnanswered = document.querySelector('.question.unanswered');
+        if (firstUnanswered) firstUnanswered.scrollIntoView({behavior:'smooth', block:'center'});
+        updateSubmitState(); return;
+      }
+      sections.forEach(section => section.questions.forEach(item => {
+        const checked = document.querySelector(`input[name="q${item.n}"]:checked`);
+        const displayQuestion = item.q || 'Choose the correct answer.';
+        if (checked && checked.value === item.a) {
+          correct++;
+          reviewHtml += `<div class="review-item correct"><strong>Question ${item.n}:</strong> ${displayQuestion}<br><strong>Result:</strong> Correct<br><strong>Answer:</strong> (${item.a}) ${item.c[item.a]}</div>`;
+        } else if (checked) {
+          reviewHtml += `<div class="review-item incorrect"><strong>Question ${item.n}:</strong> ${displayQuestion}<br><strong>Result:</strong> Incorrect<br><strong>Your answer:</strong> (${checked.value}) ${item.c[checked.value]}<br><strong>Correct answer:</strong> (${item.a}) ${item.c[item.a]}</div>`;
+        }
+      }));
+      const percent = Math.round((correct / progress.total) * 100);
+      let performanceMessage = 'Needs Improvement';
+      if (percent >= 90) performanceMessage = 'Excellent'; else if (percent >= 70) performanceMessage = 'Pass';
+      const finishedSeconds = testStartTime ? Math.floor((Date.now() - testStartTime) / 1000) : 0;
+      const overTime = finishedSeconds > TEST_DURATION_SECONDS;
+      const completionTimeText = formatDuration(finishedSeconds);
+      result.style.display = 'block';
+      result.className = percent >= 90 ? 'good' : 'bad';
+      result.innerHTML = `Score: ${correct} / ${progress.total} (${percent}%)<br><strong>${performanceMessage}</strong><br><strong>Completion Time:</strong> ${completionTimeText}${overTime ? ' <span style="color:#991b1b;">(submitted after 1 hour)</span>' : ''}`;
+      reviewHtml = `<div class="review-item"><strong>Student Name:</strong> ${studentName}${parentEmail ? '<br><strong>Parent Email:</strong> ' + parentEmail : ''}<br><strong>Completion Time:</strong> ${completionTimeText}${overTime ? ' <span style="color:#991b1b;">(submitted after 1 hour)</span>' : ''} </div>` + reviewHtml;
+      review.innerHTML = reviewHtml + `<div style="text-align:center; margin-top:20px;"><button type="button" onclick="goToPortal()" class="secondary">Take Another Test</button></div>`;
+      review.style.display = 'block';
+      const submitBtn = document.getElementById('submitBtn');
+      if (submitBtn) submitBtn.style.display = 'none';
+      if (timerInterval) clearInterval(timerInterval);
+      examSubmitted = true;
+      window.scrollTo({top:0, behavior:'smooth'});
+      updateSubmitState();
+      await saveResultToSheet({studentName, testName:'Mathematics Test 1 (NGSA 24 P1)', score:correct, total:progress.total, percent, performance:performanceMessage, completionTime:completionTimeText, overtime: overTime ? 'Yes':'No', submittedAt:new Date().toISOString()});
+    }
+    function resetQuiz(){ window.location.reload(); }
+    function goToPortal(){ window.location.href = 'index.html'; }
+    window.addEventListener('beforeunload', function(e){ if (!examSubmitted && testStarted) { e.preventDefault(); e.returnValue=''; }});
+    document.getElementById('startTestBtn').addEventListener('click', startTest);
+    document.getElementById('submitBtn').addEventListener('click', gradeQuiz);
+    document.getElementById('resetBtn').addEventListener('click', resetQuiz);
+    buildQuiz();
+    document.getElementById('timerDisplayIntro').textContent = '60:00';
+  </script>
+</body>
+</html>

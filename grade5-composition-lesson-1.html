@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade 5 Composition - Lesson 1</title>
+  <style>
+    :root {
+      --navy: #12385f;
+      --navy-dark: #0c2744;
+      --blue: #2f6fad;
+      --sky: #9be7ff;
+      --card: #ffffff;
+      --line: #d8e5f1;
+      --text: #203040;
+      --muted: #5b6c7d;
+      --good: #1f7a38;
+      --warn: #8a5b00;
+      --bad: #b42318;
+      --yellow: #fff7cc;
+      --pink: #ffe0f0;
+      --green: #e8f9ec;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #eaf7ff 0%, #fffdf8 100%);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #12385f 0%, #2f6fad 100%);
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+    }
+    header h1 { margin: 0 0 8px; font-size: 2.1rem; }
+    header p { margin: 0 auto; max-width: 980px; }
+    main {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 22px 16px 50px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 28px rgba(18, 56, 95, 0.08);
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #e8f2ff;
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 0.86rem;
+      margin-bottom: 8px;
+    }
+    .callout {
+      background: var(--navy);
+      color: white;
+      padding: 16px;
+      border-radius: 16px;
+      margin: 12px 0 16px;
+    }
+    .hero-img, .lesson-img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      margin: 14px 0 12px;
+      object-fit: cover;
+    }
+    .hero-img { max-height: 360px; }
+    .lesson-img { max-height: 320px; object-position: center; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .mini-card {
+      background: #fbfdff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 6px 16px rgba(18, 56, 95, 0.06);
+    }
+    .question {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    label.option {
+      display: block;
+      margin: 8px 0;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      cursor: pointer;
+    }
+    label.option:hover { background: #f6fbff; }
+    textarea, input[type="text"] {
+      width: 100%;
+      border: 1px solid #c8d8e8;
+      border-radius: 14px;
+      padding: 12px;
+      font: inherit;
+      margin-top: 8px;
+      background: #fff;
+    }
+    button {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--navy-dark); }
+    .soft-message {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+    .soft-good {
+      display: block;
+      background: #e8f9ec;
+      border: 1px solid #b9e1c1;
+      color: var(--good);
+    }
+    .soft-warn {
+      display: block;
+      background: #fff5dd;
+      border: 1px solid #f1d28c;
+      color: var(--warn);
+    }
+    .info-box {
+      background: #f7fbff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .tick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .tick-card {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    .tick-card input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #2f6fad;
+      flex: 0 0 auto;
+    }
+    .table-radio {
+      width: 18px;
+      height: 18px;
+      accent-color: #2f6fad;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+    }
+    th {
+      background: #edf5ff;
+      text-align: left;
+      color: var(--navy-dark);
+    }
+    .result {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+    .good { display:block; background:#e8f9ec; border:1px solid #b9e1c1; color:var(--good); }
+    .bad { display:block; background:#fdecec; border:1px solid #f2b9b9; color:var(--bad); }
+    .missing {
+      outline: 3px solid #f0b429;
+      outline-offset: 3px;
+      border-radius: 16px;
+      background: #fffaf0 !important;
+    }
+    .feedback-card {
+      background: #f8fbff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .score-pill {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .result-list {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+    .note { color: var(--muted); }
+    .footer-note { text-align: center; color: var(--muted); margin-top: 24px; }
+    @media (max-width: 720px) {
+      header h1 { font-size: 1.7rem; }
+      main { padding: 16px 12px 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Grade 5 Composition - Lesson 1</h1>
+    <p>A colourful and child-friendly lesson page for narrative and descriptive writing using clear UK English.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <span class="pill">Welcome</span>
+      <h2>Let’s learn to write!</h2>
+      <p>This lesson helps you learn how to tell a story, describe characters and settings, plan your ideas and improve your writing.</p>
+      <div class="callout">Good writers plan, write, revise, edit and publish their work.</div>
+      <img class="hero-img" src="getty_1006470432_200013161503697226619_412292.webp" alt="Narrative writing poster for children">
+      <p class="note">Look at the poster and think about stories, adventure, feelings and exciting ideas.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Narrative Writing</h2>
+      <img class="lesson-img" src="dU1nXWy09FaW23CUesA.hw.jpg" alt="Narrative essentials poster for children">
+      <p><strong>Facts and Tips</strong></p>
+      <ul>
+        <li>A narrative tells a story.</li>
+        <li>Stories are told to inform, entertain and relate an experience.</li>
+        <li>Choose a topic that is familiar to you so you can include clear details.</li>
+        <li>A good narrative usually has a beginning, middle and end.</li>
+        <li>The main parts of a narrative are characters, plot, conflict, setting and point of view.</li>
+        <li>Use transitions such as <em>first</em>, <em>next</em>, <em>then</em> and <em>finally</em> to help your ideas flow.</li>
+        <li>Use describing words and sensory details so the reader can picture what is happening.</li>
+        <li>Think about the mood of the story. Should it feel happy, scary, exciting or peaceful?</li>
+      </ul>
+      <div class="grid">
+        <div class="mini-card"><strong>Characters</strong><br>Who is in the story?</div>
+        <div class="mini-card"><strong>Plot</strong><br>What happens from start to finish?</div>
+        <div class="mini-card"><strong>Conflict</strong><br>What problem must be solved?</div>
+        <div class="mini-card"><strong>Setting</strong><br>Where and when does it happen?</div>
+        <div class="mini-card"><strong>Point of view</strong><br>Who is telling the story?</div>
+      </div>
+      <p class="note">The poster above reminds writers to create a plot, hook readers, sequence events, describe the action, show close-up details and set the right mood.</p>
+      <div class="question">
+        <h3>Quick Quiz</h3>
+        <p>Choose the topic that is <u>most suitable</u> for a narrative story.</p>
+        <label class="option"><input type="radio" name="q1" value="a"> The best day of my life</label>
+        <label class="option"><input type="radio" name="q1" value="b"> How to prepare chow mein</label>
+        <label class="option"><input type="radio" name="q1" value="c"> Someone I admire</label>
+        <button onclick="checkQuiz1()">Check Answer</button>
+        <div id="r1" class="result"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="pill">Week 2</span>
+      <h2>Narrative Writing: Setting</h2>
+      <img class="lesson-img" src="159_1024x1024@2x.webp" alt="Writing process poster for children">
+      <p><strong>Facts and Tips</strong></p>
+      <ul>
+        <li>Writers choose <strong>when</strong> and <strong>where</strong> the story happens.</li>
+        <li>The setting helps the reader imagine the place and time clearly.</li>
+        <li>Describing words such as <em>windy</em>, <em>quiet</em>, <em>muddy</em> and <em>bright</em> make the setting stronger.</li>
+        <li>The tense of the story should match the time of the events.</li>
+        <li>Ask yourself: Was it in the past, is it happening now, or will it happen later?</li>
+      </ul>
+      <p class="note">Use the writing process poster above to remember: plan, write, revise, edit and publish.</p>
+
+      <div class="question" id="settingTask">
+        <h3>On Your Own</h3>
+        <p>Think about an unforgettable experience you have had.</p>
+        <p><strong>What tense will you use?</strong></p>
+        <input id="tenseInput" type="text" placeholder="Example: past tense">
+        <p><strong>When and where will the story take place?</strong></p>
+        <input id="whenWhereInput" type="text" placeholder="Example: on a rainy Friday evening at my aunt's house">
+        <p><strong>List some descriptive words for your setting.</strong></p>
+        <textarea id="settingWordsInput" rows="4" placeholder="Example: dark, windy, muddy, quiet, rainy"></textarea>
+        <div id="settingMessage" class="soft-message"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="pill">Week 2</span>
+      <h2>Narrative Writing: Characters</h2>
+      <img class="lesson-img" src="558299858_1418652440265934_2878115712127188320_n.jpg" alt="Happy children for character writing section">
+      <p><strong>Facts and Tips</strong></p>
+      <ul>
+        <li>Characters are the people or animals in a story.</li>
+        <li>Main characters need to be fully developed with plenty of details.</li>
+        <li>Other characters also need enough detail to feel real.</li>
+        <li>Descriptive words help readers imagine each character clearly.</li>
+      </ul>
+      <p><strong>How to describe a character</strong></p>
+      <p>You can describe a character’s appearance, actions, speech, feelings and behaviour. For example, instead of saying Peter is nice, you can say Peter is a cheerful, energetic boy who always encourages his team-mates.</p>
+      <p><strong>Practice Example</strong></p>
+      <p>Characters in a story about an unforgettable experience might include:</p>
+      <ul>
+        <li>me</li>
+        <li>my mother</li>
+        <li>my uncle</li>
+        <li>fisherman</li>
+        <li>thief</li>
+      </ul>
+      <p><strong>Useful describing words:</strong> tall, handsome, brave, curly hair, bright eyes, well-built, young, short, cruel, rude, dark, fair, cunning, arrogant, miserable</p>
+
+      <div class="question" id="characterWordsTask">
+        <h3>On Your Own</h3>
+        <p><strong>Write words you can use to describe the main character in your story.</strong></p>
+        <textarea id="characterWordsInput" rows="4" placeholder="Example: brave, cheerful, tall, clever, kind"></textarea>
+        <div id="characterWordsMessage" class="soft-message"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="pill">Week 3</span>
+      <h2>Descriptive Essay: Planning</h2>
+      <img class="lesson-img" src="1731452.jpg" alt="Narrative writing poster for planning section">
+      <p><strong>Facts and Tips</strong></p>
+      <ul>
+        <li>A descriptive essay describes a person, place, object or experience.</li>
+        <li>Think carefully about the topic before writing.</li>
+        <li>Write down the main points you want to develop.</li>
+        <li>Your essay should be written in sequence using paragraphs.</li>
+        <li>Begin every sentence with a capital letter.</li>
+        <li>Use interesting describing words so the reader can picture what you mean.</li>
+        <li>Keep your ideas relevant to the topic.</li>
+      </ul>
+      <p class="note">The poster above reminds writers to think about who, where, when, what happens next and how the story ends.</p>
+
+      <div class="question">
+        <h3>Planning Checklist</h3>
+        <table id="planTable">
+          <tr>
+            <th>Area to write about</th>
+            <th>Yes</th>
+            <th>No</th>
+          </tr>
+          <tr>
+            <td>Identity: name, age, gender</td>
+            <td><input class="table-radio" type="radio" name="plan1" value="yes"></td>
+            <td><input class="table-radio" type="radio" name="plan1" value="no"></td>
+          </tr>
+          <tr>
+            <td>Physical appearance: height, complexion, body structure</td>
+            <td><input class="table-radio" type="radio" name="plan2" value="yes"></td>
+            <td><input class="table-radio" type="radio" name="plan2" value="no"></td>
+          </tr>
+          <tr>
+            <td>Attitudes and hobbies: likes and dislikes</td>
+            <td><input class="table-radio" type="radio" name="plan3" value="yes"></td>
+            <td><input class="table-radio" type="radio" name="plan3" value="no"></td>
+          </tr>
+          <tr>
+            <td>Groups I belong to: school, family</td>
+            <td><input class="table-radio" type="radio" name="plan4" value="yes"></td>
+            <td><input class="table-radio" type="radio" name="plan4" value="no"></td>
+          </tr>
+          <tr>
+            <td>Other useful details</td>
+            <td><input class="table-radio" type="radio" name="plan5" value="yes"></td>
+            <td><input class="table-radio" type="radio" name="plan5" value="no"></td>
+          </tr>
+        </table>
+        <div id="planMessage" class="soft-message"></div>
+      </div>
+
+      <p><strong>Model introductory paragraph</strong></p>
+      <div class="info-box">
+        I am proud of myself. My name is Sue Brown. I am a tall, slender girl. I am ten years old but look older because I am tall and strong. I have a round face on which I wear a brilliant smile. My hair is long, curly and black. I have blue, beady eyes and a straight, pointed nose which make me look very pretty.
+      </div>
+
+      <div class="question" id="jackTask">
+
+        <h3>On Your Own</h3>
+        <p>Jack is a new boy in your community. Write an introductory paragraph to tell him about yourself.</p>
+        <textarea id="jackParagraph" rows="8" placeholder="Write your introductory paragraph here..."></textarea>
+        <div class="info-box">
+          <strong>Tick the boxes that you think are in your paragraph.</strong>
+          <div class="tick-grid">
+            <label class="tick-card"><input type="checkbox" id="hookCheck"> <span>An introductory or hook statement</span></label>
+            <label class="tick-card"><input type="checkbox" id="identityCheck"> <span>Identity details</span></label>
+            <label class="tick-card"><input type="checkbox" id="appearanceCheck"> <span>Physical appearance details</span></label>
+            <label class="tick-card"><input type="checkbox" id="hobbyCheck"> <span>Attitudes and hobbies</span></label>
+            <label class="tick-card"><input type="checkbox" id="groupsCheck"> <span>Groups I belong to: school, family</span></label>
+            <label class="tick-card"><input type="checkbox" id="otherCheck"> <span>Other useful details</span></label>
+            <label class="tick-card"><input type="checkbox" id="flowCheck"> <span>Smooth flow from one sentence to the next</span></label>
+            <label class="tick-card"><input type="checkbox" id="spellingCheck"> <span>Correct spelling</span></label>
+            <label class="tick-card"><input type="checkbox" id="punctCheck"> <span>Capital letters and punctuation</span></label>
+          </div>
+        </div>
+        <div id="jackMessage" class="soft-message"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="pill">Week 4</span>
+      <h2>Revising, Editing and Publishing</h2>
+      <img class="lesson-img" src="5-step-writing-process.jpg" alt="Five step writing process poster">
+      <p><strong>Facts and Tips</strong></p>
+      <ul>
+        <li><strong>Prewrite</strong> or <strong>plan</strong> your ideas before you begin.</li>
+        <li><strong>Write</strong> your first draft and get your ideas down.</li>
+        <li><strong>Revise</strong> to make the writing better and clearer.</li>
+        <li><strong>Edit</strong> to fix grammar, spelling, punctuation and capital letters.</li>
+        <li><strong>Publish</strong> by sharing your corrected work with others.</li>
+      </ul>
+      <p class="note">The writing process posters on this page help you remember the steps strong writers use.</p>
+
+      <img class="lesson-img" src="5-step-writing-process.jpg" alt="Writing process poster with prewriting drafting revising editing publishing">
+      <div class="question" id="revisionTask">
+        <h3>On Your Own</h3>
+        <p>Use the checklist below when revising your own essay.</p>
+        <table>
+          <tr><th>Does my essay contain:</th><th>Yes</th><th>No</th><th>Errors</th><th>Corrections</th></tr>
+          <tr><td>A topic sentence and the necessary details for each paragraph</td><td><input class="table-radio" type="radio" name="rev1" value="yes"></td><td><input class="table-radio" type="radio" name="rev1" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+          <tr><td>Correct grammar</td><td><input class="table-radio" type="radio" name="rev2" value="yes"></td><td><input class="table-radio" type="radio" name="rev2" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+          <tr><td>Correct spelling, punctuation and capital letters</td><td><input class="table-radio" type="radio" name="rev3" value="yes"></td><td><input class="table-radio" type="radio" name="rev3" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+          <tr><td>Good sequencing</td><td><input class="table-radio" type="radio" name="rev4" value="yes"></td><td><input class="table-radio" type="radio" name="rev4" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+          <tr><td>Descriptive words</td><td><input class="table-radio" type="radio" name="rev5" value="yes"></td><td><input class="table-radio" type="radio" name="rev5" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+          <tr><td>A beginning, middle and end</td><td><input class="table-radio" type="radio" name="rev6" value="yes"></td><td><input class="table-radio" type="radio" name="rev6" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+          <tr><td>No irrelevant ideas</td><td><input class="table-radio" type="radio" name="rev7" value="yes"></td><td><input class="table-radio" type="radio" name="rev7" value="no"></td><td><input type="text" placeholder="Write an error"></td><td><input type="text" placeholder="Write a correction"></td></tr>
+        </table>
+        <div id="revisionMessage" class="soft-message"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="pill">Final Task</span>
+      <h2>Composition Writing Task</h2>
+      <img class="lesson-img" src="750f-1239623-1.avif" alt="Children celebrating for final composition prompt">
+      <p>You are a school champion athlete. Write a composition to tell the reader how you train as an athlete. Explain how you feel about being the champion and what you plan to do to keep your position.</p>
+      <textarea id="athleteComposition" rows="12" placeholder="Write your composition here..."></textarea>
+      <div id="athleteMessage" class="soft-message"></div>
+    </section>
+
+    <section class="panel" id="resultsPanel">
+      <span class="pill">Results</span>
+      <h2>My Feedback</h2>
+      <p class="note">Complete every required section, then use the button below to submit all your answers.</p>
+      <div class="feedback-card">
+        <button onclick="submitAllWork()">Submit All Answers</button>
+        <div id="topSubmitMessage" class="soft-message"></div>
+      </div>
+
+      <div id="overallResults" style="display:none;">
+        <div class="feedback-card">
+          <h3>Child-Friendly Summary</h3>
+          <p id="overallSummary"></p>
+        </div>
+        <div class="score-grid">
+          <div class="score-pill"><strong>Jack Paragraph</strong><br><span id="jackScoreBlock">Not graded yet</span></div>
+          <div class="score-pill"><strong>Athlete Composition</strong><br><span id="athleteScoreBlock">Not graded yet</span></div>
+        </div>
+        <div class="feedback-card">
+          <h3>Checklist Match</h3>
+          <ul id="checklistMatchList" class="result-list"></ul>
+        </div>
+        <div class="feedback-card">
+          <h3>UK English Spelling Check</h3>
+          <ul id="ukCorrectionsList" class="result-list"></ul>
+        </div>
+        <div class="feedback-card">
+          <h3>What You Did Well</h3>
+          <ul id="strengthsList" class="result-list"></ul>
+        </div>
+        <div class="feedback-card">
+          <h3>How To Improve</h3>
+          <ul id="nextStepsList" class="result-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">This lesson uses local classroom checks first. AI grading can be connected after the easy checks are passed.</p>
+  </main>
+
+  <script>
+    const USE_DEMO_GRADING = true;
+    const AI_GRADING_ENDPOINT = "/api/grade-composition";
+
+    function setSoftMessage(id, ok, text) {
+      const box = document.getElementById(id);
+      box.className = 'soft-message ' + (ok ? 'soft-good' : 'soft-warn');
+      box.textContent = text;
+    }
+
+    function getRadioValue(name) {
+      const el = document.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+
+    function clearMissingMarks() {
+      document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
+    }
+
+    function markMissing(el) {
+      if (el) el.classList.add('missing');
+    }
+
+    function scrollToFirstMissing() {
+      const first = document.querySelector('.missing');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function countWords(text) {
+      return text.trim() ? text.trim().split(/\s+/).length : 0;
+    }
+
+    function splitItems(text) {
+      return text.split(/[\n,]+/).map(x => x.trim()).filter(Boolean);
+    }
+
+    function splitSentences(text) {
+      return text.split(/(?<=[.!?])\s+/).filter(Boolean);
+    }
+
+    function showQuizResult(id, ok, good, bad) {
+      const el = document.getElementById(id);
+      el.className = 'result ' + (ok ? 'good' : 'bad');
+      el.textContent = ok ? good : bad;
+    }
+
+    function checkQuiz1() {
+      const ans = getRadioValue('q1');
+      showQuizResult('r1', ans === 'a', 'Correct. “The best day of my life” is a narrative topic.', 'Not quite. The best answer is “The best day of my life”.');
+    }
+
+    function validateSettingTask() {
+      const tense = document.getElementById('tenseInput').value.trim();
+      const whenWhere = document.getElementById('whenWhereInput').value.trim();
+      const settingWords = document.getElementById('settingWordsInput').value.trim();
+      const timeOk = /past tense|present tense|future tense/i.test(tense);
+      const hasTimeClue = /yesterday|today|tomorrow|morning|afternoon|evening|night|sunday|monday|friday|last|one day|at night|weekend/i.test(whenWhere);
+      const hasPlaceClue = /beach|school|home|house|park|river|garden|road|aunt|classroom|shop|village|community/i.test(whenWhere);
+      const words = splitItems(settingWords);
+      const settingWordBank = ['windy','dark','bright','muddy','quiet','noisy','rainy','peaceful','rough','salty','crowded','lonely','misty','sunny','cool'];
+      const foundDescriptive = words.filter(w => settingWordBank.includes(w.toLowerCase())).length;
+
+      if (!tense || !whenWhere || !settingWords) {
+        setSoftMessage('settingMessage', false, 'Please complete all three setting questions.');
+        if (!tense) markMissing(document.getElementById('tenseInput'));
+        if (!whenWhere) markMissing(document.getElementById('whenWhereInput'));
+        if (!settingWords) markMissing(document.getElementById('settingWordsInput'));
+        return ['Please complete all setting questions.'];
+      }
+      if (!timeOk) {
+        setSoftMessage('settingMessage', false, 'Please write the tense you will use, such as past tense.');
+        markMissing(document.getElementById('tenseInput'));
+        return ['Write the tense clearly, such as past tense.'];
+      }
+      if (!(hasTimeClue && hasPlaceClue)) {
+        setSoftMessage('settingMessage', false, 'Tell when the story happened and where it happened.');
+        markMissing(document.getElementById('whenWhereInput'));
+        return ['Tell when and where the story takes place.'];
+      }
+      if (words.length < 3 || foundDescriptive < 2) {
+        setSoftMessage('settingMessage', false, 'Add more describing words for the setting, such as windy, quiet, dark or peaceful.');
+        markMissing(document.getElementById('settingWordsInput'));
+        return ['Add at least 3 setting words and make them descriptive.'];
+      }
+      setSoftMessage('settingMessage', true, 'Great. Your setting answers are ready.');
+      return [];
+    }
+
+    function validateCharacterWordsTask() {
+      const text = document.getElementById('characterWordsInput').value.trim();
+      const words = splitItems(text);
+      const charWordBank = ['brave','kind','friendly','cheerful','tall','short','clever','strong','rude','curious','helpful','funny','quiet','bold','gentle','smart'];
+      const found = words.filter(w => charWordBank.includes(w.toLowerCase())).length;
+      if (!text) {
+        setSoftMessage('characterWordsMessage', false, 'Please write describing words for your character.');
+        markMissing(document.getElementById('characterWordsInput'));
+        return ['Character describing words are missing.'];
+      }
+      if (words.length < 3) {
+        setSoftMessage('characterWordsMessage', false, 'Please write at least 3 describing words.');
+        markMissing(document.getElementById('characterWordsInput'));
+        return ['Write at least 3 describing words for the character.'];
+      }
+      if (found < 2) {
+        setSoftMessage('characterWordsMessage', false, 'Try words like brave, kind, cheerful, clever or tall.');
+        markMissing(document.getElementById('characterWordsInput'));
+        return ['Use stronger describing words for your character.'];
+      }
+      setSoftMessage('characterWordsMessage', true, 'Great. These look like useful character words.');
+      return [];
+    }
+
+    function detectIdentity(text) {
+      return /my name is|i am \d+ years old|i'm \d+ years old|i am a boy|i am a girl/i.test(text);
+    }
+    function detectPhysicalAppearance(text) {
+      return /tall|short|slender|round face|hair|eyes|nose|smile|curly|straight|bright eyes|complexion|skin/i.test(text);
+    }
+    function detectAttitudesHobbies(text) {
+      return /i like|i love|i enjoy|my hobby|my hobbies|i dislike|i do not like|i don't like|favourite|playing|reading|swimming|football|cricket|drawing|singing/i.test(text);
+    }
+    function detectGroups(text) {
+      return /my school|my family|my team|my class|my church|my club|community|belong to/i.test(text);
+    }
+    function detectOtherUseful(text) {
+      return /i live|i help|people say|i am proud|every day|after school|on weekends/i.test(text);
+    }
+    function detectFlow(text) {
+      return /(also|and|because|then|next|after that|finally|when|while)/i.test(text) || splitSentences(text).length >= 3;
+    }
+    function detectCapitalAndPunctuation(text) {
+      const trimmed = text.trim();
+      return /^[A-Z]/.test(trimmed) && /[.!?]\s*$/.test(trimmed);
+    }
+    function detectSpellingLooksOkay(text) {
+      return !/\bi is\b|\bmy hear\b|\bcolor\b|\bfavorite\b|\borganize\b|\bcenter\b/i.test(text);
+    }
+
+    function compareParagraphChecks(text) {
+      const checks = [
+        { id: 'hookCheck', label: 'An introductory or hook statement', found: /i am proud of myself|let me tell you about myself|my name is|i am happy to tell you/i.test(text), fix: 'Add a clear opening sentence to start your paragraph.' },
+        { id: 'identityCheck', label: 'Identity details', found: detectIdentity(text), fix: 'Add your name, age or gender. Example: “My name is Asha. I am ten years old.”' },
+        { id: 'appearanceCheck', label: 'Physical appearance details', found: detectPhysicalAppearance(text), fix: 'Add describing words about how you look, such as tall, curly hair or bright eyes.' },
+        { id: 'hobbyCheck', label: 'Attitudes and hobbies', found: detectAttitudesHobbies(text), fix: 'Add what you like, dislike or enjoy doing.' },
+        { id: 'groupsCheck', label: 'Groups I belong to', found: detectGroups(text), fix: 'Add a group such as your school, family, team or club.' },
+        { id: 'otherCheck', label: 'Other useful details', found: detectOtherUseful(text), fix: 'Add one more helpful detail about yourself.' },
+        { id: 'flowCheck', label: 'Smooth flow', found: detectFlow(text), fix: 'Use linking words like also, because, then or finally.' },
+        { id: 'spellingCheck', label: 'Correct spelling', found: detectSpellingLooksOkay(text), fix: 'Check your spelling carefully and correct any tricky words.' },
+        { id: 'punctCheck', label: 'Capital letters and punctuation', found: detectCapitalAndPunctuation(text), fix: 'Begin with a capital letter and end your sentences with full stops.' }
+      ];
+      return checks.map(item => {
+        const studentChecked = document.getElementById(item.id).checked;
+        return {
+          item: item.label,
+          studentChecked,
+          foundInWriting: item.found,
+          comment: studentChecked && item.found
+            ? 'You checked this and your writing shows it.'
+            : studentChecked && !item.found
+              ? 'You checked this, but I could not clearly find it in your writing yet.'
+              : !studentChecked && item.found
+                ? 'You did include this, even though you did not tick the box.'
+                : 'This was not ticked and it is not clearly shown yet.',
+          fixTip: item.found ? 'Keep it in your writing.' : item.fix
+        };
+      });
+    }
+
+    function validatePlanningChecklist() {
+      const rows = ['plan1','plan2','plan3','plan4','plan5'];
+      if (!rows.every(n => getRadioValue(n))) {
+        setSoftMessage('planMessage', false, 'Please choose Yes or No for every row in the planning checklist.');
+        markMissing(document.getElementById('planTable'));
+        return ['Please complete all rows in the planning checklist.'];
+      }
+      const firstFourAllYes = ['plan1','plan2','plan3','plan4'].every(n => getRadioValue(n) === 'yes');
+      if (!firstFourAllYes) {
+        setSoftMessage('planMessage', false, 'You must have Yes for numbers 1 to 4 for a finished plan.');
+        markMissing(document.getElementById('planTable'));
+        return ['You must have Yes for numbers 1 to 4 for a finished plan.'];
+      }
+      setSoftMessage('planMessage', true, 'Correct, must have yes for numbers 1 to 4');
+      return [];
+    }
+
+    function validateJackParagraph() {
+      const text = document.getElementById('jackParagraph').value.trim();
+      if (!text) {
+        setSoftMessage('jackMessage', false, 'Please write your paragraph before submitting.');
+        markMissing(document.getElementById('jackParagraph'));
+        return ['Jack paragraph is missing.'];
+      }
+      const mismatches = compareParagraphChecks(text).filter(x => x.studentChecked && !x.foundInWriting);
+      if (mismatches.length) {
+        setSoftMessage('jackMessage', false, mismatches[0].comment + ' ' + mismatches[0].fixTip);
+        markMissing(document.getElementById('jackParagraph'));
+        return mismatches.map(x => x.item + ': ' + x.fixTip);
+      }
+      setSoftMessage('jackMessage', true, 'Great. Your checked boxes match what I can see in your paragraph.');
+      return [];
+    }
+
+    function validateRevisionChecklist() {
+      const rows = ['rev1','rev2','rev3','rev4','rev5','rev6','rev7'];
+      if (!rows.every(n => getRadioValue(n))) {
+        setSoftMessage('revisionMessage', false, 'Please complete every Yes or No choice in the revision checklist.');
+        markMissing(document.getElementById('revisionTask'));
+        return ['Please complete every Yes or No choice in the revision checklist.'];
+      }
+      const allYes = rows.every(n => getRadioValue(n) === 'yes');
+      if (allYes) {
+        setSoftMessage('revisionMessage', true, 'Excellent. Your essay meets all the key requirements.');
+      } else {
+        setSoftMessage('revisionMessage', false, 'You still need to revise your essay. Check the areas marked No.');
+      }
+      return [];
+    }
+
+    function validateAthleteComposition() {
+      const text = document.getElementById('athleteComposition').value.trim();
+      if (!text) {
+        setSoftMessage('athleteMessage', false, 'Please write your composition before submitting.');
+        markMissing(document.getElementById('athleteComposition'));
+        return ['Athlete composition is missing.'];
+      }
+      const issues = [];
+      if (countWords(text) < 40) issues.push('Your athlete composition needs more detail. Try writing at least 40 words.');
+      if (!detectCapitalAndPunctuation(text)) issues.push('Your athlete composition needs capital letters and ending punctuation.');
+      if (issues.length) {
+        setSoftMessage('athleteMessage', false, issues[0]);
+        markMissing(document.getElementById('athleteComposition'));
+        return issues;
+      }
+      setSoftMessage('athleteMessage', true, 'Good work. Your composition is ready for grading.');
+      return [];
+    }
+
+    function findUkCorrections(text) {
+      const pairs = [['color','colour'],['favorite','favourite'],['organize','organise'],['center','centre'],['neighbor','neighbour'],['traveling','travelling']];
+      const found = [];
+      pairs.forEach(([us,uk]) => {
+        const regex = new RegExp('\\b' + us + '\\b', 'i');
+        if (regex.test(text)) found.push({ original: us, suggestion: uk, reason: 'In UK English, we spell this word as ' + uk + '.' });
+      });
+      return found;
+    }
+
+    function localRubricScore(text, checklistMatches) {
+      const words = countWords(text);
+      const sentences = splitSentences(text).length;
+      const vivid = /(bright|cheerful|rough|peaceful|proud|strong|curly|round|brilliant|happy|salty|misty|slender|beady)/i.test(text);
+      const transitions = /(first|next|then|after|later|finally|because|also|when|while)/i.test(text);
+      const capitalsPunct = detectCapitalAndPunctuation(text);
+      const spellingOkay = detectSpellingLooksOkay(text);
+      let content = 4;
+      if (words >= 25) content = 5;
+      if (words >= 40) content = 6;
+      if (words >= 55 && vivid) content = 7;
+      if (words >= 70 && vivid) content = 8;
+      if (words >= 90 && vivid) content = 9;
+      if (words >= 110 && vivid) content = 10;
+      if (checklistMatches) {
+        const matched = checklistMatches.filter(x => x.studentChecked && x.foundInWriting).length;
+        if (matched >= 5) content = Math.min(10, content + 1);
+      }
+      let organization = 2;
+      if (sentences >= 3) organization = 3;
+      if (sentences >= 4 && transitions) organization = 4;
+      if (sentences >= 5 && transitions) organization = 5;
+      let language = 2;
+      if (capitalsPunct) language = 3;
+      if (capitalsPunct && spellingOkay) language = 4;
+      if (capitalsPunct && spellingOkay && sentences >= 4) language = 5;
+      return { contentFocusVocabulary: content, organization, languageExpression: language, total: content + organization + language };
+    }
+
+    function rubricInsight(scores) {
+      return {
+        contentFocusVocabulary: scores.contentFocusVocabulary >= 8 ? 'You stayed on topic and used helpful details and describing words.' : scores.contentFocusVocabulary >= 6 ? 'You stayed mostly on topic, but you can make your writing stronger with more clear details and vivid words.' : 'Your ideas are a start, but you need more relevant details and stronger describing words.',
+        organization: scores.organization >= 4 ? 'Your ideas are in a sensible order and the writing flows well.' : scores.organization >= 3 ? 'Your writing has some order, but it would flow better with linking words such as also, then, next or finally.' : 'Your ideas need a clearer order with a beginning, middle and end.',
+        languageExpression: scores.languageExpression >= 4 ? 'Most sentences are clear, and your spelling and punctuation are mostly controlled.' : scores.languageExpression >= 3 ? 'Some parts are clear, but check your capital letters, punctuation and tricky spellings.' : 'Please check grammar, spelling, capital letters and full stops carefully.'
+      };
+    }
+
+    function buildPayload() {
+      return {
+        lessonTitle: 'Grade 5 Composition - Lesson 1',
+        responses: {
+          settingTask: {
+            tense: document.getElementById('tenseInput').value.trim(),
+            whenWhere: document.getElementById('whenWhereInput').value.trim(),
+            settingWords: document.getElementById('settingWordsInput').value.trim()
+          },
+          characterWords: document.getElementById('characterWordsInput').value.trim(),
+          planningChecklist: {
+            identity: getRadioValue('plan1'),
+            physicalAppearance: getRadioValue('plan2'),
+            attitudesAndHobbies: getRadioValue('plan3'),
+            groupsIBelongTo: getRadioValue('plan4'),
+            otherUsefulDetails: getRadioValue('plan5')
+          },
+          jackParagraph: {
+            text: document.getElementById('jackParagraph').value.trim(),
+            studentChecks: {
+              hookStatement: document.getElementById('hookCheck').checked,
+              identityDetails: document.getElementById('identityCheck').checked,
+              physicalAppearance: document.getElementById('appearanceCheck').checked,
+              attitudesAndHobbies: document.getElementById('hobbyCheck').checked,
+              groupsIBelongTo: document.getElementById('groupsCheck').checked,
+              otherUsefulDetails: document.getElementById('otherCheck').checked,
+              smoothFlow: document.getElementById('flowCheck').checked,
+              correctSpelling: document.getElementById('spellingCheck').checked,
+              capitalLettersAndPunctuation: document.getElementById('punctCheck').checked
+            }
+          },
+          athleteComposition: {
+            text: document.getElementById('athleteComposition').value.trim()
+          }
+        },
+        requirements: { gradeLevel: 'Grade 5', languageVariant: 'UK English' }
+      };
+    }
+
+    function buildDemoResponse(payload) {
+      const jackMatches = compareParagraphChecks(payload.responses.jackParagraph.text);
+      const jackScores = localRubricScore(payload.responses.jackParagraph.text, jackMatches);
+      const athleteScores = localRubricScore(payload.responses.athleteComposition.text);
+      const ukEnglishCorrections = [
+        ...findUkCorrections(payload.responses.jackParagraph.text),
+        ...findUkCorrections(payload.responses.athleteComposition.text)
+      ];
+      const strengths = [];
+      if (jackScores.contentFocusVocabulary >= 7) strengths.push('Your paragraph stays on topic and includes useful details about yourself.');
+      if (athleteScores.organization >= 4) strengths.push('Your composition is organised in a clear order.');
+      if (athleteScores.languageExpression >= 4 || jackScores.languageExpression >= 4) strengths.push('You are showing good control of spelling, punctuation or capital letters in parts of your writing.');
+      if (!strengths.length) strengths.push('You completed your writing tasks and now know what to improve next.');
+
+      const nextSteps = [];
+      jackMatches.filter(x => x.studentChecked && !x.foundInWriting).forEach(x => nextSteps.push(x.fixTip));
+      if (athleteScores.contentFocusVocabulary < 7) nextSteps.push('Add more detail about how you train, how you feel and what you will do to stay champion.');
+      if (athleteScores.organization < 4) nextSteps.push('Use linking words such as first, next, then and finally.');
+      if (ukEnglishCorrections.length) nextSteps.push('Change American spellings to UK English spellings before you submit again.');
+
+      return {
+        childFriendlySummary: 'Good effort. Your work passed the easy classroom checks first. Read the notes below to see what matched your checklist and how to improve your writing.',
+        jackParagraph: { scores: jackScores, rubricFeedback: rubricInsight(jackScores) },
+        athleteComposition: { scores: athleteScores, rubricFeedback: rubricInsight(athleteScores) },
+        checklistMatch: jackMatches,
+        ukEnglishCorrections,
+        strengths,
+        nextSteps: [...new Set(nextSteps)]
+      };
+    }
+
+    async function requestGrade(payload) {
+      if (USE_DEMO_GRADING) return buildDemoResponse(payload);
+      const res = await fetch(AI_GRADING_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Grading request failed.');
+      return await res.json();
+    }
+
+    function renderList(id, items, formatter) {
+      const list = document.getElementById(id);
+      list.innerHTML = '';
+      if (!items || !items.length) {
+        const li = document.createElement('li');
+        li.textContent = 'No notes here yet.';
+        list.appendChild(li);
+        return;
+      }
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = formatter ? formatter(item) : item;
+        list.appendChild(li);
+      });
+    }
+
+    function renderOverallResults(result) {
+      document.getElementById('overallResults').style.display = 'block';
+      document.getElementById('overallSummary').textContent = result.childFriendlySummary;
+      document.getElementById('jackScoreBlock').innerHTML =
+        `Content / Focus / Vocabulary: ${result.jackParagraph.scores.contentFocusVocabulary}/10<br>` +
+        `Organization: ${result.jackParagraph.scores.organization}/5<br>` +
+        `Language and Expression: ${result.jackParagraph.scores.languageExpression}/5<br>` +
+        `Total: ${result.jackParagraph.scores.total}/20<br><br>` +
+        `<em>${result.jackParagraph.rubricFeedback.contentFocusVocabulary}</em><br>` +
+        `<em>${result.jackParagraph.rubricFeedback.organization}</em><br>` +
+        `<em>${result.jackParagraph.rubricFeedback.languageExpression}</em>`;
+      document.getElementById('athleteScoreBlock').innerHTML =
+        `Content / Focus / Vocabulary: ${result.athleteComposition.scores.contentFocusVocabulary}/10<br>` +
+        `Organization: ${result.athleteComposition.scores.organization}/5<br>` +
+        `Language and Expression: ${result.athleteComposition.scores.languageExpression}/5<br>` +
+        `Total: ${result.athleteComposition.scores.total}/20<br><br>` +
+        `<em>${result.athleteComposition.rubricFeedback.contentFocusVocabulary}</em><br>` +
+        `<em>${result.athleteComposition.rubricFeedback.organization}</em><br>` +
+        `<em>${result.athleteComposition.rubricFeedback.languageExpression}</em>`;
+      renderList('checklistMatchList', result.checklistMatch, item => `<strong>${item.item}:</strong> ${item.comment} ${!item.foundInWriting ? '👉 ' + item.fixTip : ''}`);
+      renderList('ukCorrectionsList', result.ukEnglishCorrections, item => `<strong>${item.original}</strong> → ${item.suggestion}. ${item.reason}`);
+      renderList('strengthsList', result.strengths);
+      renderList('nextStepsList', result.nextSteps);
+      document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function submitAllWork() {
+      clearMissingMarks();
+
+      const issues = [
+        ...validateSettingTask(),
+        ...validateCharacterWordsTask(),
+        ...validatePlanningChecklist(),
+        ...validateJackParagraph(),
+        ...validateRevisionChecklist(),
+        ...validateAthleteComposition()
+      ];
+
+      if (issues.length) {
+        setSoftMessage('topSubmitMessage', false, 'Please fix the highlighted parts before submitting all answers.');
+        alert('Please fix these before grading:\n\n- ' + issues.join('\n- '));
+        scrollToFirstMissing();
+        return;
+      }
+
+      const payload = buildPayload();
+
+      try {
+        setSoftMessage('topSubmitMessage', true, 'Great. Your answers passed the classroom checks. Now sending one grading request.');
+        const result = await requestGrade(payload);
+        renderOverallResults(result);
+        setSoftMessage('topSubmitMessage', true, 'Success. Your work has been graded and your feedback is ready below.');
+      } catch (err) {
+        setSoftMessage('topSubmitMessage', false, 'I could not grade your work right now. Please try again.');
+        alert('Grading could not be completed right now.');
+      }
+    }
+  </script>
+</body>
+</html>

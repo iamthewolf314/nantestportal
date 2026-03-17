@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Test 1 (NGSA M#2 23 P2)</title>
+  <style>
+    :root{
+      --navy:#234f86;
+      --navy-dark:#183b66;
+      --card:#ffffff;
+      --line:#d9dee7;
+      --text:#183046;
+      --muted:#5b6b7b;
+      --green:#e9f8ee;
+      --blue:#eef5ff;
+      --danger:#fde8e8;
+      --danger-text:#991b1b;
+      --success:#dff4e7;
+      --success-text:#166534;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#ffffff;
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:12px 14px 34px;
+    }
+    .hero{
+      background:var(--navy);
+      color:#fff;
+      border-radius:28px;
+      padding:30px 28px;
+      margin-bottom:24px;
+    }
+    .hero h1{margin:0 0 10px;font-size:2.5rem;line-height:1.05}
+    .hero p{margin:0;max-width:860px;font-size:1.06rem;line-height:1.5}
+    .section{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      margin-bottom:18px;
+      box-shadow:0 8px 22px rgba(20,50,90,0.06);
+    }
+    .section h2{
+      margin:0 0 12px;
+      font-size:1.55rem;
+      color:#0f2340;
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+    .section-instruction{
+      font-weight:700;
+      font-size:1.02rem;
+      margin:0 0 14px;
+    }
+    .callout{
+      background:var(--navy);
+      color:white;
+      border-radius:18px;
+      padding:16px 18px;
+      margin-bottom:18px;
+    }
+    .callout ol{
+      margin:10px 0 0 20px;
+      line-height:1.6;
+    }
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .student-box{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-width:320px;
+      flex:1 1 320px;
+    }
+    .timer-box{
+      text-align:right;
+      min-width:220px;
+      flex:0 0 220px;
+    }
+    .timer{
+      font-weight:800;
+      font-size:1.4rem;
+      color:var(--navy-dark);
+    }
+    input[type="text"], input[type="email"], textarea{
+      width:100%;
+      border:1px solid #c8d8e8;
+      border-radius:14px;
+      padding:12px;
+      font:inherit;
+      margin-top:8px;
+      background:#fff;
+    }
+    textarea{
+      min-height:320px;
+      resize:vertical;
+    }
+    #storyTitle{min-height:auto}
+    .btn{
+      display:inline-block;
+      margin-top:14px;
+      padding:12px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      background:var(--navy);
+      color:#fff;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
+    .btn:hover{background:var(--navy-dark)}
+    .btn.secondary{
+      background:#fff;
+      color:var(--navy);
+      border:1px solid var(--line);
+    }
+    .prompt-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fbfdff;
+      padding:16px;
+      margin-bottom:14px;
+    }
+    .prompt-card.selected{
+      border:2px solid var(--navy);
+      background:#f7fbff;
+    }
+    .prompt-head{
+      display:grid;
+      grid-template-columns:1fr 28px;
+      gap:12px;
+      align-items:start;
+      margin-bottom:8px;
+    }
+    .prompt-title{
+      font-size:1.12rem;
+      font-weight:800;
+      color:#0f2340;
+      margin:0;
+    }
+    .prompt-body p{
+      margin:0 0 10px;
+      line-height:1.55;
+    }
+    .radio-wrap{
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding-top:2px;
+    }
+    .story-image{
+      max-width:680px;
+      margin:12px auto 4px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:10px;
+      background:#fff;
+    }
+    .story-image img{
+      width:100%;
+      display:block;
+      height:auto;
+      border-radius:10px;
+    }
+    .hidden{display:none !important}
+    .count-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:10px;
+      color:var(--muted);
+      flex-wrap:wrap;
+    }
+    #result{
+      margin-top:18px;
+      padding:18px;
+      border-radius:14px;
+      display:none;
+      font-weight:700;
+    }
+    .good{background:var(--success);color:var(--success-text)}
+    .bad{background:var(--danger);color:var(--danger-text)}
+    #review{display:none;margin-top:18px}
+    .review-item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:white;
+      margin-bottom:10px;
+    }
+    .status-note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    @media (max-width:700px){
+      .hero h1{font-size:2rem}
+      .timer-box{text-align:left}
+      .prompt-head{grid-template-columns:1fr 24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>English Test 1 (NGSA M#2 23 P2)</h1>
+      <p>Paper 2. Letter writing and composition. Answer one question only.</p>
+    </section>
+
+    <div id="instructionScreen">
+      <section class="callout">
+        <strong>Read these instructions carefully before you attempt to answer the questions.</strong>
+        <ol>
+          <li>This paper consists of two sections: Section A and Section B.</li>
+          <li>Section A consists of four letter topics.</li>
+          <li>Section B consists of four composition topics.</li>
+          <li>Answer <strong>one question only</strong>, either from Section A or Section B. Each question is worth 20 marks.</li>
+          <li>You have <strong>60 minutes for writing</strong> and <strong>10 minutes for reading</strong>. Writing may begin during the reading time.</li>
+          <li>Look over your work when you have finished.</li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <div class="top-row">
+          <div class="student-box">
+            <div>
+              <label for="studentName"><strong>Student Name (Required)</strong></label>
+              <input id="studentName" type="text" placeholder="Enter student name">
+            </div>
+            <div>
+              <label for="parentEmail"><strong>Parent Email (Optional)</strong></label>
+              <input id="parentEmail" type="email" placeholder="Enter parent email">
+            </div>
+          </div>
+          <div class="timer-box">
+            <div><strong>Total Time:</strong> 1 hr</div>
+            <div id="timerDisplayIntro" class="timer">60:00 mins</div>
+            <div style="font-size:.92rem;color:var(--muted);">The timer will begin when you click <strong>I'm Ready, Start Test</strong>.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="text-align:center">
+        <button type="button" class="btn secondary" onclick="window.location.href='index.html'">Return to Index</button>
+        <button type="button" class="btn" id="startTestBtn">I'm Ready, Start Test</button>
+      </section>
+    </div>
+
+    <div id="testScreen" class="hidden">
+      <section class="section">
+        <div class="top-row" style="align-items:center">
+          <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+            <div><strong>Total Time:</strong> 1 hr</div>
+            <div id="selectedPromptDisplay" style="font-weight:700;color:var(--navy-dark)">No question selected</div>
+          </div>
+          <div class="timer-box">
+            <div><strong>Time Remaining</strong></div>
+            <div id="timerDisplayTest" class="timer">60:00 mins</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Section A</h2>
+        <div class="section-instruction">In about 120–200 words, write a letter based on the information below.</div>
+
+        <label class="prompt-card" data-question="1">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 1</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="1"></div>
+          </div>
+          <div class="prompt-body">
+            <p>There is an increase in the amount of garbage on the roadside and drains in your community.</p>
+            <p>Write a letter to the Regional Chairman/Mayor/Toshao asking him/her to remove the garbage. In your letter, state three ways the removal of garbage will benefit your community.</p>
+          </div>
+        </label>
+
+        <label class="prompt-card" data-question="2">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 2</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="2"></div>
+          </div>
+          <div class="prompt-body">
+            <p>World Literacy Day is approaching. You want to start a reading club in your school.</p>
+            <p>Write a letter to your headteacher stating three ways this club will be beneficial to the students.</p>
+          </div>
+        </label>
+
+        <label class="prompt-card" data-question="3">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 3</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="3"></div>
+          </div>
+          <div class="prompt-body">
+            <p>Your friend Tom scored low grades in his end-of-term examination. You would like to help him improve his grades.</p>
+            <p>Write a letter inviting him to be part of your study group. In your letter, explain three ways studying in the group can be beneficial to Tom.</p>
+          </div>
+        </label>
+
+        <label class="prompt-card" data-question="4">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 4</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="4"></div>
+          </div>
+          <div class="prompt-body">
+            <p>Your class was invited to visit the Iwokrama Rainforest but does not have enough money to pay for the trip.</p>
+            <p>Write a letter to your class teacher suggesting three ways how funds can be raised for this visit.</p>
+          </div>
+        </label>
+      </section>
+
+      <section class="section">
+        <h2>Section B</h2>
+        <div class="section-instruction">In about 120–200 words, write a composition based on the information below.</div>
+
+        <label class="prompt-card" data-question="5">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 5</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="5"></div>
+          </div>
+          <div class="prompt-body">
+            <p>Write a story that includes the sentence:</p>
+            <p><strong>“The sudden ringing of the school bell disturbed her thoughts. Susan grabbed her bag and rushed out of the classroom.”</strong></p>
+            <p>Give your story a suitable title.</p>
+          </div>
+        </label>
+
+        <label class="prompt-card" data-question="6">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 6</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="6"></div>
+          </div>
+          <div class="prompt-body">
+            <p>Write a story that ends with the following sentence:</p>
+            <p><strong>“From that day, I decided never to lie again.”</strong></p>
+            <p>Give your story a suitable title.</p>
+          </div>
+        </label>
+
+        <label class="prompt-card" data-question="7">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 7</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="7"></div>
+          </div>
+          <div class="prompt-body">
+            <p>On your way to the farm, you heard a strange sound, it sounded like an animal in distress. You went to investigate and could not believe what you were seeing. You just had to help the poor creature.</p>
+            <p>Write a story based on the scenario above. Give your story a suitable title.</p>
+          </div>
+        </label>
+
+        <label class="prompt-card" data-question="8">
+          <div class="prompt-head">
+            <h3 class="prompt-title">Question 8</h3>
+            <div class="radio-wrap"><input type="radio" name="selectedPrompt" value="8"></div>
+          </div>
+          <div class="prompt-body">
+            <p>Write a story based on the series of pictures below. Give your story a suitable title.</p>
+            <div class="story-image"><img src="./ngsa_m2_p2_q8.png" alt="Question 8 picture sequence"></div>
+          </div>
+        </label>
+      </section>
+
+      <section class="section">
+        <h2>Your Response</h2>
+        <div class="section-instruction">Select one question only, then write your answer below.</div>
+        <div id="titleWrap" class="hidden">
+          <label for="storyTitle"><strong>Story Title</strong></label>
+          <input id="storyTitle" type="text" placeholder="Enter a suitable title for Questions 5–8">
+        </div>
+        <label for="responseBox" style="display:block;margin-top:14px"><strong>Main Response</strong></label>
+        <textarea id="responseBox" placeholder="Write your letter or composition here..."></textarea>
+        <div class="count-row">
+          <div id="wordCountDisplay">0 words</div>
+          <div>Required length: 120–200 words</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <button type="button" id="submitBtn" class="btn">Submit Test</button>
+        <button type="button" id="resetBtn" class="btn secondary">Reset</button>
+        <div id="result"></div>
+        <div id="saveStatus" class="status-note"></div>
+        <div id="review"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyowo9cN5vIWA0WXDpZwgY3pwqLrcn0oUWOFCt5HIUR4X_NiCstJPYESdhl4DKRgYhO/exec';
+    const TOTAL_SECONDS = 60 * 60;
+    let testStartTime = null;
+    let timerInterval = null;
+    let testStarted = false;
+    let examSubmitted = false;
+    let studentName = '';
+    let parentEmail = '';
+
+    const prompts = {
+      1: 'There is an increase in the amount of garbage on the roadside and drains in your community. Write a letter to the Regional Chairman/Mayor/Toshao asking him/her to remove the garbage. In your letter, state three ways the removal of garbage will benefit your community.',
+      2: 'World Literacy Day is approaching. You want to start a reading club in your school. Write a letter to your headteacher stating three ways this club will be beneficial to the students.',
+      3: 'Your friend Tom scored low grades in his end-of-term examination. You would like to help him improve his grades. Write a letter inviting him to be part of your study group. In your letter, explain three ways studying in the group can be beneficial to Tom.',
+      4: 'Your class was invited to visit the Iwokrama Rainforest but does not have enough money to pay for the trip. Write a letter to your class teacher suggesting three ways how funds can be raised for this visit.',
+      5: 'Write a story that includes the sentence: “The sudden ringing of the school bell disturbed her thoughts. Susan grabbed her bag and rushed out of the classroom.” Give your story a suitable title.',
+      6: 'Write a story that ends with the following sentence: “From that day, I decided never to lie again.” Give your story a suitable title.',
+      7: 'On your way to the farm, you heard a strange sound, it sounded like an animal in distress. You went to investigate and could not believe what you were seeing. You just had to help the poor creature. Write a story based on the scenario above. Give your story a suitable title.',
+      8: 'Write a story based on the series of pictures. Give your story a suitable title.'
+    };
+
+    function formatDuration(totalSeconds) {
+      const safeSeconds = Math.max(0, totalSeconds);
+      const hours = Math.floor(safeSeconds / 3600);
+      const minutes = Math.floor((safeSeconds % 3600) / 60);
+      const seconds = safeSeconds % 60;
+      if (hours > 0) return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    function htmlEscape(str) {
+      return (str || '').replace(/[&<>"]/g, function (m) {
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];
+      });
+    }
+    function getSelectedPrompt() {
+      const checked = document.querySelector('input[name="selectedPrompt"]:checked');
+      return checked ? checked.value : '';
+    }
+    function updateSelectionDisplay() {
+      const selected = getSelectedPrompt();
+      const titleWrap = document.getElementById('titleWrap');
+      document.querySelectorAll('.prompt-card').forEach(card => card.classList.remove('selected'));
+      if (selected) {
+        const card = document.querySelector(`.prompt-card[data-question="${selected}"]`);
+        if (card) card.classList.add('selected');
+        document.getElementById('selectedPromptDisplay').textContent = `Selected Question: ${selected}`;
+        if (['5','6','7','8'].includes(selected)) {
+          titleWrap.classList.remove('hidden');
+        } else {
+          titleWrap.classList.add('hidden');
+          document.getElementById('storyTitle').value = '';
+        }
+      } else {
+        document.getElementById('selectedPromptDisplay').textContent = 'No question selected';
+        titleWrap.classList.add('hidden');
+        document.getElementById('storyTitle').value = '';
+      }
+    }
+    function updateWordCount() {
+      const text = document.getElementById('responseBox').value.trim();
+      const count = text ? text.split(/\s+/).length : 0;
+      document.getElementById('wordCountDisplay').textContent = `${count} words`;
+    }
+    function validateStart() {
+      const nameField = document.getElementById('studentName');
+      const emailField = document.getElementById('parentEmail');
+      const name = nameField.value.trim();
+      const email = emailField ? emailField.value.trim() : '';
+      if (!name) {
+        alert('Please enter your name before starting the test.');
+        nameField.focus();
+        return false;
+      }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address or leave it blank.');
+        emailField.focus();
+        return false;
+      }
+      studentName = name;
+      parentEmail = email;
+      return true;
+    }
+    function updateTimer() {
+      if (!testStarted || !testStartTime) return;
+      const elapsedSeconds = Math.floor((Date.now() - testStartTime) / 1000);
+      const remaining = TOTAL_SECONDS - elapsedSeconds;
+      const timerDisplay = document.getElementById('timerDisplayTest');
+      if (remaining >= 0) {
+        timerDisplay.textContent = `${formatDuration(remaining)} mins`;
+        timerDisplay.style.color = 'var(--navy-dark)';
+      } else {
+        timerDisplay.textContent = `+${formatDuration(Math.abs(remaining))} mins`;
+        timerDisplay.style.color = '#991b1b';
+      }
+    }
+    function startTimer() {
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+    function startTest() {
+      if (!validateStart()) return;
+      document.getElementById('instructionScreen').classList.add('hidden');
+      document.getElementById('testScreen').classList.remove('hidden');
+      testStartTime = Date.now();
+      testStarted = true;
+      startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    async function saveResultToSheet(payload) {
+      const saveStatus = document.getElementById('saveStatus');
+      try {
+        saveStatus.textContent = 'Saving result...';
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        saveStatus.textContent = response.ok ? 'Result saved successfully.' : 'Result could not be saved automatically.';
+      } catch (error) {
+        console.error(error);
+        saveStatus.textContent = 'Result could not be saved automatically.';
+      }
+    }
+    async function submitWriting() {
+      const result = document.getElementById('result');
+      const review = document.getElementById('review');
+      const selected = getSelectedPrompt();
+      const responseText = document.getElementById('responseBox').value.trim();
+      const storyTitle = document.getElementById('storyTitle').value.trim();
+      if (!selected) {
+        result.style.display = 'block';
+        result.className = 'bad';
+        result.textContent = 'Please select one question before submitting.';
+        return;
+      }
+      if (!responseText) {
+        result.style.display = 'block';
+        result.className = 'bad';
+        result.textContent = 'Please write your response before submitting.';
+        document.getElementById('responseBox').focus();
+        return;
+      }
+      if (['5','6','7','8'].includes(selected) && !storyTitle) {
+        result.style.display = 'block';
+        result.className = 'bad';
+        result.textContent = 'Please enter a suitable title for your story.';
+        document.getElementById('storyTitle').focus();
+        return;
+      }
+      const finishedSeconds = testStartTime ? Math.floor((Date.now() - testStartTime) / 1000) : 0;
+      const overTime = finishedSeconds > TOTAL_SECONDS;
+      const completionTimeText = formatDuration(finishedSeconds);
+      const wordCount = responseText.split(/\s+/).length;
+      const sectionName = ['1','2','3','4'].includes(selected) ? 'Section A — Letter Writing' : 'Section B — Composition';
+
+      result.style.display = 'block';
+      result.className = 'good';
+      result.innerHTML = `Submitted successfully.<br><strong>${sectionName}</strong><br><strong>Selected Question:</strong> ${selected}<br><strong>Completion Time:</strong> ${completionTimeText}${overTime ? ' <span style="color:#991b1b;">(submitted after 1 hour)</span>' : ''}<br><strong>Word Count:</strong> ${wordCount}`;
+
+      review.innerHTML = `
+        <div class="review-item">
+          <strong>Student Name:</strong> ${htmlEscape(studentName)}${parentEmail ? '<br><strong>Parent Email:</strong> ' + htmlEscape(parentEmail) : ''}<br>
+          <strong>Section:</strong> ${sectionName}<br>
+          <strong>Selected Question:</strong> ${selected}<br>
+          <strong>Completion Time:</strong> ${completionTimeText}${overTime ? ' <span style="color:#991b1b;">(submitted after 1 hour)</span>' : ''}<br>
+          <strong>Word Count:</strong> ${wordCount}
+        </div>
+        <div class="review-item"><strong>Prompt:</strong><br>${htmlEscape(prompts[selected])}</div>
+        ${['5','6','7','8'].includes(selected) ? `<div class="review-item"><strong>Story Title:</strong><br>${htmlEscape(storyTitle)}</div>` : ''}
+        <div class="review-item"><strong>Response:</strong><br>${htmlEscape(responseText).replace(/\n/g, '<br>')}</div>
+      `;
+      review.style.display = 'block';
+      document.getElementById('submitBtn').style.display = 'none';
+      if (timerInterval) clearInterval(timerInterval);
+      examSubmitted = true;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      await saveResultToSheet({
+        studentName,
+        parentEmail,
+        testName: 'English Test 1 (NGSA M#2 23 P2)',
+        sectionName,
+        selectedQuestion: `Question ${selected}`,
+        promptText: prompts[selected],
+        storyTitle,
+        responseText,
+        wordCount,
+        completionTime: completionTimeText,
+        overtime: overTime ? 'Yes' : 'No',
+        submittedAt: new Date().toISOString()
+      });
+    }
+    window.addEventListener('beforeunload', function (e) {
+      if (!examSubmitted && testStarted) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+    document.querySelectorAll('input[name="selectedPrompt"]').forEach(radio => {
+      radio.addEventListener('change', updateSelectionDisplay);
+    });
+    document.getElementById('responseBox').addEventListener('input', updateWordCount);
+    document.getElementById('startTestBtn').addEventListener('click', startTest);
+    document.getElementById('submitBtn').addEventListener('click', submitWriting);
+    document.getElementById('resetBtn').addEventListener('click', function(){ window.location.reload(); });
+  </script>
+</body>
+</html>

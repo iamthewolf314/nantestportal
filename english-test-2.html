@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English Test 1 (NGSA M#2 23 P1)</title>
+  <title>English Test 2 (NGSA 21 P1)</title>
   <style>
     :root {
       --navy: #163a63;
@@ -105,21 +105,6 @@
       line-height: 1.7;
     }
 
-    .word-bank-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(90px, 1fr));
-      gap: 24px;
-      margin-top: 6px;
-      text-align: center;
-    }
-
-    .word-bank-grid div {
-      border: 1px solid #444;
-      padding: 8px 10px;
-      background: #fff;
-      font-weight: 500;
-    }
-
     .passage-wrap {
       max-width: 760px;
       margin: 18px auto 24px auto;
@@ -136,27 +121,6 @@
 
     .passage p {
       margin: 0 0 14px 0;
-    }
-
-    .ad-section {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .exam-ad {
-      max-width: 600px;
-      margin: 15px auto;
-      padding: 10px;
-      border: 1px solid #bbb;
-      background: #fff;
-      border-radius: 10px;
-    }
-
-    .exam-ad img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 6px;
     }
 
     .question {
@@ -299,16 +263,13 @@
       .hero { padding: 20px; }
       .hero h1 { font-size: 1.6rem; }
       .section { padding: 16px; }
-      .word-bank-grid {
-        grid-template-columns: repeat(2, minmax(90px, 1fr));
-      }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="hero">
-      <h1>English Test 1 (NGSA M#2 23 P1)</h1>
+      <h1>English Test 2 (NGSA 21 P1)</h1>
       <p>Paper 1 • 40 Questions • Multiple Choice</p>
     </div>
 
@@ -322,7 +283,7 @@
             <strong>Sample Question</strong><br><br>
             Choose the correct spelling of the word which completes the following sentence.<br><br>
             <strong>Red is Tim’s <span class="blank">______</span> colour.</strong><br><br>
-            (A) favorit<br>
+            (A) favorite<br>
             (B) favarite<br>
             (C) faverite<br>
             (D) favourite<br><br>
@@ -386,180 +347,127 @@
 
     const sections = [
       {
-        title: 'Questions 1–3',
-        instruction: 'Choose the correct spelling of the word to complete each sentence.',
+        title: 'Questions 1–6',
+        instruction: 'Choose the correct spelling of the word that completes each sentence.',
         questions: [
-          {n:1, q:'The wedding <span class="blank">______</span> was held at the Government Building.', c:{A:'ceremeny',B:'ciremoney',C:'ceramony',D:'ceremony'}, a:'D'},
-          {n:2, q:'John is the fastest <span class="blank">______</span> on the field.', c:{A:'atlete',B:'athlite',C:'atleeth',D:'athlete'}, a:'D'},
-          {n:3, q:'The winner of the Spelling Bee competition was <span class="blank">______</span> in the library.', c:{A:'anounsed',B:'announsed',C:'announced',D:'anounnced'}, a:'C'}
-        ]
-      },
-      {
-        title: 'Question 4',
-        instruction: 'Select the group of words that is arranged in alphabetical order.',
-        questions: [
-          {n:4, q:'', c:{A:'careless, cement, charming, clock',B:'careless, charming, cement, clock',C:'charming, careless, cement, clock',D:'cement, careless, clock, charming'}, a:'A'}
-        ]
-      },
-      {
-        title: 'Questions 5 and 6',
-        instruction: 'The following words are <u>not</u> arranged in alphabetical order.',
-        reference: `
-          <div class="reference-wrap">
-            <div class="word-bank-grid">
-              <div>culture</div>
-              <div>cylinder</div>
-              <div>clamp</div>
-              <div>compare</div>
-            </div>
-          </div>
-        `,
-        questions: [
-          {n:5, q:'If these words are arranged in alphabetical order, which word would come <u>second</u>?', c:{A:'clamp',B:'culture',C:'cylinder',D:'compare'}, a:'D'},
-          {n:6, q:'If the word <u>craft</u> is added to the list in alphabetical order, which word will it appear <u>before</u>?', c:{A:'clamp',B:'culture',C:'cylinder',D:'compare'}, a:'B'}
+          {n:1, q:'Before a child walks, he must <span class="blank">______</span>.', c:{A:'craal.',B:'crawl.',C:'crawle.',D:'craawle.'}, a:'B'},
+          {n:2, q:'The teacher made a good <span class="blank">______</span> between the turkey and the peacock.', c:{A:'comparison',B:'comparesen',C:'comparason',D:'compareison'}, a:'A'},
+          {n:3, q:'The girls were <span class="blank">______</span> in the school yard during recess.', c:{A:'skiping',B:'skipeing',C:'skipping',D:'skepping'}, a:'C'},
+          {n:4, q:'They were told to place the objects in <span class="blank">______</span> order.', c:{A:'nemirecal',B:'numirecal',C:'numerical',D:'newmerical'}, a:'C'},
+          {n:5, q:'It is an <span class="blank">______</span> to receive an award from the president.', c:{A:'onor',B:'onour',C:'honer',D:'honour'}, a:'D'},
+          {n:6, q:'Traffic signs keep people out of <span class="blank">______</span>.', c:{A:'danger.',B:'dangur.',C:'dainger.',D:'danjour.'}, a:'A'}
         ]
       },
       {
         title: 'Questions 7–9',
+        instruction: 'Choose the most suitable adverb to complete each sentence.',
+        questions: [
+          {n:7, q:'Peter has done <span class="blank">___</span> in his examination this year.', c:{A:'well',B:'best',C:'good',D:'much'}, a:'A'},
+          {n:8, q:'Daniel swam <span class="blank">___</span> across the raging river to save the dog from drowning.', c:{A:'lazily',B:'calmly',C:'bravely',D:'patiently'}, a:'C'},
+          {n:9, q:'Mary was praised by her teacher for her <span class="blank">___</span> drawn diagram of the digestive system.', c:{A:'neatly',B:'poorly',C:'roughly',D:'unevenly'}, a:'A'}
+        ]
+      },
+      {
+        title: 'Questions 10–13',
         instruction: 'Choose the most suitable form of the verb to complete each sentence.',
         questions: [
-          {n:7, q:'The farmer <span class="blank">___</span> his plants.', c:{A:'is watered',B:'has watered',C:'are watering',D:'were watering'}, a:'B'},
-          {n:8, q:'John <span class="blank">___</span> his new bicycle to school yesterday.', c:{A:'rode',B:'rides',C:'riding',D:'ridden'}, a:'A'},
-          {n:9, q:'Neither the coach nor his players <span class="blank">___</span> enough skills to win the championship.', c:{A:'has',B:'have',C:'is having',D:'was having'}, a:'B'}
+          {n:10, q:'I <span class="blank">___</span> to the playground to watch the cricket match.', c:{A:'will goes',B:'am going',C:'have gone',D:'should goes'}, a:'B'},
+          {n:11, q:'Last year, the family <span class="blank">___</span> to the United Kingdom for vacation.', c:{A:'go',B:'went',C:'gone',D:'are going'}, a:'B'},
+          {n:12, q:'The campfire <span class="blank">___</span> by an adult.', c:{A:'is started',B:'has started',C:'was started',D:'were started'}, a:'C'},
+          {n:13, q:'Either Harry or Ron <span class="blank">___</span> the classroom every day.', c:{A:'open',B:'opens',C:'opening',D:'have opened'}, a:'B'}
         ]
       },
       {
-        title: 'Questions 10–12',
-        instruction: 'Choose the most appropriate word to complete each sentence.',
+        title: 'Questions 14–16',
+        instruction: 'Choose the correct form of the adjective to complete each sentence.',
         questions: [
-          {n:10, q:'The children decorated <span class="blank">___</span> classroom for the graduation.', c:{A:'their',B:'them',C:'there',D:'they’re'}, a:'A'},
-          {n:11, q:'The teacher <span class="blank">___</span> the students for their lateness.', c:{A:'thanked',B:'praised',C:'scolded',D:'celebrated'}, a:'C'},
-          {n:12, q:'Reading helps to <span class="blank">___</span> our vocabulary.', c:{A:'shrink',B:'reduce',C:'expand',D:'decrease'}, a:'C'}
+          {n:14, q:'Joe is <span class="blank">___</span> than Michael.', c:{A:'old',B:'oldest',C:'older',D:'more old'}, a:'C'},
+          {n:15, q:'Of these two pumpkins, that one is <span class="blank">___</span>.', c:{A:'big.',B:'bigger.',C:'biggest.',D:'more bigger.'}, a:'B'},
+          {n:16, q:'The plane is the <span class="blank">___</span> way to travel.', c:{A:'faster',B:'fastest',C:'most fast',D:'more fast'}, a:'B'}
         ]
       },
       {
-        title: 'Questions 13 and 14',
-        instruction: 'Choose the correct collective noun to complete each sentence.',
+        title: 'Questions 17–19',
+        instruction: 'Choose the word that means the same as the underlined word in each sentence.',
         questions: [
-          {n:13, q:'My cat has a <span class="blank">___</span> of kittens.', c:{A:'litter',B:'class',C:'bunch',D:'school'}, a:'A'},
-          {n:14, q:'The <span class="blank">___</span> of musicians played at the concert.', c:{A:'team',B:'class',C:'band',D:'group'}, a:'C'}
+          {n:17, q:'The airplane <u><strong>departed</strong></u> the Cheddi Jagan International Airport this morning.', c:{A:'left',B:'reached',C:'arrived at',D:'embarked on'}, a:'A'},
+          {n:18, q:'The air around us is <u><strong>dirty</strong></u> in many different ways.', c:{A:'pure',B:'neat',C:'fresh',D:'polluted'}, a:'D'},
+          {n:19, q:'The <u><strong>angry</strong></u> man took a long time to get home.', c:{A:'furious',B:'cheerful',C:'relieved',D:'confused'}, a:'A'}
         ]
       },
       {
-        title: 'Questions 15 and 16',
-        instruction: 'The four sentences below are <u>not</u> in the correct order to form a paragraph. Read the sentences carefully and then answer the questions that follow.',
+        title: 'Questions 20–23',
+        instruction: 'Choose the most suitable pronoun to complete each sentence.',
+        questions: [
+          {n:20, q:'Dina asked <span class="blank">___</span> to tell a funny story.', c:{A:'he',B:'we',C:'him',D:'she'}, a:'C'},
+          {n:21, q:'The planet Mars has two moons. <span class="blank">___</span> are both very small.', c:{A:'It',B:'They',C:'Them',D:'There'}, a:'B'},
+          {n:22, q:'The ball belongs to the children. The ball is <span class="blank">___</span>.', c:{A:'they.',B:'them.',C:'yours.',D:'theirs.'}, a:'D'},
+          {n:23, q:'Those guests are ready to order food. <span class="blank">___</span> look hungry.', c:{A:'We',B:'Our',C:'The',D:'They'}, a:'D'}
+        ]
+      },
+      {
+        title: 'Questions 24–26',
+        instruction: 'Choose the preposition that should be placed on each numbered line in the paragraph.',
         reference: `
           <div class="reference-wrap">
-            <ol class="reference-list">
-              <li>They give birth once every five years.</li>
-              <li>Elephants are the largest mammals on Earth.</li>
-              <li>Their offspring is called a calf.</li>
-              <li>They have massive bodies, huge ears, and extensive trunks.</li>
-            </ol>
+            <p>Deep <span class="blank">___24___</span> the jungle, there was a beautiful pond. It was cool and refreshing. Sometimes, butterflies would dance <span class="blank">___25___</span> it. On one of my visits, I happened to pass <span class="blank">___26___</span> the pond and was amazed by its beauty.</p>
           </div>
         `,
         questions: [
-          {n:15, q:'Which sentence should start the paragraph?', c:{A:'Sentence 1',B:'Sentence 2',C:'Sentence 3',D:'Sentence 4'}, a:'B'},
-          {n:16, q:'The correct order of the sentences should be', c:{A:'2, 4, 1, 3',B:'1, 2, 3, 4',C:'2, 1, 4, 3',D:'3, 4, 2, 1'}, a:'A'}
+          {n:24, q:'Choose the correct word for blank 24.', c:{A:'in',B:'by',C:'into',D:'from'}, a:'A'},
+          {n:25, q:'Choose the correct word for blank 25.', c:{A:'up',B:'over',C:'from',D:'beyond'}, a:'B'},
+          {n:26, q:'Choose the correct word for blank 26.', c:{A:'in',B:'from',C:'near',D:'between'}, a:'C'}
         ]
       },
       {
-        title: 'Question 17',
-        questions: [
-          {n:17, q:'Which of the following words should begin with a capital letter in the sentence below?<br><br>Shivnarine and his talented son, <u><strong>tagenarine are excellent cricketers.', c:{A:'and',B:'his',C:'talented',D:'tagenarine'}, a:'D'}
-        ]
-      },
-      {
-        title: 'Questions 18–20',
-        instruction: 'Choose the word that means the same as the underlined word in each sentence.',
-        questions: [
-          {n:18, q:'The train stopped <u><strong>unexpectedly</strong></u>.', c:{A:'slowly',B:'on time',C:'regularly',D:'suddenly'}, a:'D'},
-          {n:19, q:'The boy focused <u><strong>entirely</strong></u> on his exams.', c:{A:'diverted',B:'targeted',C:'observed',D:'concentrated'}, a:'D'},
-          {n:20, q:'Our Science teacher told us to always <u><strong>protect</strong></u> our environment.', c:{A:'pollute',B:'sanitize',C:'preserve',D:'understand'}, a:'C'}
-        ]
-      },
-      {
-        title: 'Questions 21–23',
-        instruction: 'Choose the word that is opposite in meaning to the underlined word in each sentence.',
-        questions: [
-          {n:21, q:'The police <u><strong>prevented</strong></u> the free flow of traffic.', c:{A:'averted',B:'allowed',C:'stopped',D:'hastened'}, a:'B'},
-          {n:22, q:'The <u><strong>miser</strong></u> always saves his money.', c:{A:'saver',B:'debtor',C:'collector',D:'spendthrift'}, a:'D'},
-          {n:23, q:'The boy swam in the <u><strong>shallow</strong></u> waters of the lake.', c:{A:'deep',B:'rough',C:'muddy',D:'choppy'}, a:'A'}
-        ]
-      },
-      {
-        title: 'Questions 24 and 25',
-        instruction: 'Choose the most suitable conjunction to complete each sentence.',
-        questions: [
-          {n:24, q:'My mother works at the zoo <span class="blank">___</span> she takes me with her sometimes.', c:{A:'for',B:'yet',C:'but',D:'and'}, a:'D'},
-          {n:25, q:'I like football <span class="blank">___</span> I am not good at it.', c:{A:'so',B:'for',C:'but',D:'since'}, a:'C'}
-        ]
-      },
-      {
-        title: 'Question 26',
-        instruction: 'Choose the correct word to complete the sentence.',
-        questions: [
-          {n:26, q:'She kept her <span class="blank">___</span> behind her ears.', c:{A:'hair',B:'here',C:'hear',D:'hare'}, a:'A'}
-        ]
-      },
-      {
-        title: 'Question 27',
-        instruction: 'Choose the correct punctuation mark to complete the sentence.',
-        questions: [
-          {n:27, q:'Letitia, who is a movie star, visited the President <span class="blank">___</span> the Minister and the Mayor.', c:{A:'.',B:'?',C:',',D:'!'}, a:'C'}
-        ]
-      },
-      {
-        title: 'Question 28',
+        title: 'Questions 27–30',
         instruction: 'Choose the sentence in which punctuation marks are correctly used.',
         questions: [
-          {n:28, q:'', c:{A:'The teachers were happy with the children’s test scores.',B:'The teachers were happy with the childrens’ test scores.',C:'The teachers were happy with the children’s test scores’.',D:'The teacher’s were happy with the children test scores.'}, a:'A'}
-        ]
-      },
-      {
-        title: 'Questions 29 and 30',
-        instruction: 'Choose the compound word in each sentence.',
-        questions: [
-          {n:29, q:'The <u>sunflower</u> in the garden looked beautiful this morning.', c:{A:'garden',B:'morning',C:'beautiful',D:'sunflower'}, a:'D'},
-          {n:30, q:'The beverage spilled and damaged the <u>tablecloth</u>.', c:{A:'spilled',B:'damaged',C:'tablecloth',D:'beverage'}, a:'C'}
+          {n:27, q:'', c:{A:'We will be there every Monday Tuesday and Wednesday.',B:'We will be there every Monday, Tuesday and Wednesday.',C:'We will be there every Monday Tuesday, and Wednesday.',D:'We will be there, every Monday, Tuesday, and Wednesday.'}, a:'B'},
+          {n:28, q:'', c:{A:'"Where is the dog hiding asked Mark".',B:'"Where is the dog hiding," asked Mark.',C:'"Where is the dog hiding? Asked Mark".',D:'"Where is the dog hiding?" asked Mark.'}, a:'D'},
+          {n:29, q:'', c:{A:"The baby's cry disturbed my sleep.",B:"The babie's cry disturbed my sleep.",C:"The baby cries' disturbed my sleep.",D:"The babies cries' disturbed my sleep."}, a:'A'},
+          {n:30, q:'', c:{A:'"I am so tired" he sighed loudly.',B:'"I am so tired"! he sighed loudly.',C:'"I am so tired he! sighed loudly."',D:'"I am so tired!" he sighed loudly.'}, a:'D'}
         ]
       },
       {
         title: 'Questions 31–35',
-        instruction: 'Read the passage carefully and then answer the questions that follow.',
+        instruction: 'Read the passage below and then answer the questions that follow.',
         reference: `
           <div class="passage-wrap">
             <div class="passage">
-              <p>My classmates have all been to a circus before, but not me. They would constantly talk about their experience which made me even more eager to visit the circus, so mom and dad decided that we will go on Saturday.</p>
-              <p>Saturday finally came, and we got dressed and headed to the circus. At the circus, we watched three elephants walk through some big hoops. Next, the clowns came out on unicycles and rode all around the circus tent. The best part was when the trapeze artists walked high above us on a very thin wire. People held their breath as they watched the trapeze artists.</p>
-              <p>Dad got some cotton candy and peanuts for me, and I shared them with my little sister, Marie. Later, some horses came out with riders that were doing tricks, including riding sideways. We took many pictures until finally, it was time to go home, but I will never forget the most fantastic time I had at my first circus!</p>
+              <p>The fastest mammal on land, the cheetah, can reach speeds of 60 or perhaps even 70 miles (97 or 113 kilometres) an hour over short distances. However, the cheetah usually chases its prey at only about half that speed. After a chase, a cheetah needs half an hour to catch its breath before it can eat. Because of their size, strength and predatory skills, cheetahs are considered one of the 'big cats'. Tigers, lions, leopards, jaguars and cougars are also part of this grouping.</p>
+              <p>The cheetah is hard to see because its spotted coat blends with the tall, dry grass of the plains. Its excellent eyesight helps it find prey during the day. Once the cheetah spots its prey it makes a lightning dash. It knocks its prey to the ground and then bites its throat. Cheetahs eat small to medium-sized animals, such as hares, impalas, wild beast calves and gazelles.</p>
+              <p>Cheetahs today are racing towards extinction. Loss of habitat and declining numbers of their prey combine to threaten the future of these cats.</p>
             </div>
           </div>
         `,
         questions: [
-          {n:31, q:'What did the clowns ride at the circus?', c:{A:'horses',B:'scooters',C:'elephants',D:'unicycles'}, a:'D'},
-          {n:32, q:'Which word best describes the children in the story?', c:{A:'sad',B:'lonely',C:'excited',D:'worried'}, a:'C'},
-          {n:33, q:'“People held their breath as they watched the trapeze artists.” suggests that the people were:', c:{A:'unable to breathe at the time.',B:'amazed by the skill of the trapeze artists.',C:'hoping that the trapeze artists would fall.',D:'told to hold their breath while the trapeze artists performed.'}, a:'B'},
-          {n:34, q:'Which of the following was described as the best act at the circus?', c:{A:'The clowns riding unicycles',B:'The trapeze artists walking on thin wire',C:'The beautiful gray horses moving sideways',D:'The huge elephants walking through big hoops'}, a:'B'},
-          {n:35, q:'Which of the following titles is most suitable for the passage?', c:{A:'Animals',B:'Family Time',C:'A Day at the Circus',D:'Sharing with the Family'}, a:'C'}
+          {n:31, q:'What is the fastest speed at which a cheetah can move?', c:{A:'60 miles per hour',B:'70 miles per hour',C:'97 miles per hour',D:'113 miles per hour'}, a:'B'},
+          {n:32, q:'Which of the following animals is <u>not</u> considered to be in the same grouping as the cheetah?', c:{A:'Jaguar',B:'Cougar',C:'Gazelle',D:'Leopard'}, a:'C'},
+          {n:33, q:'During the day, the cheetah can easily spot its prey because it', c:{A:'moves fast.',B:'has many spots.',C:'can pounce on prey.',D:'has excellent eyesight.'}, a:'D'},
+          {n:34, q:'What is the main idea in paragraph 2?', c:{A:'How the cheetah hunts',B:'The speed of the cheetah',C:'Animals on which the cheetah preys',D:'How the cheetah blends with its surroundings'}, a:'A'},
+          {n:35, q:'Cheetahs are "racing towards extinction". Which of the following conditions are leading to the extinction of cheetahs?', c:{A:'I and II',B:'I and III',C:'II and III',D:'I, II and III'}, a:'B'}
         ]
       },
       {
         title: 'Questions 36–40',
-        instruction: 'Study the advertisement carefully, and then answer Questions 36–40.',
+        instruction: 'Read the story below and then answer the questions that follow.',
         reference: `
-          <div class="ad-section">
-            <div class="exam-ad">
-              <img src="./ad.png" alt="Restaurant advertisement">
+          <div class="passage-wrap">
+            <div class="passage">
+              <p>The serpent succeeded in capturing an eagle. The serpent wrapped himself around the eagle's neck. The eagle tried to use his beak and claws to struggle to freedom, but nothing worked. He even lifted his wings to soar into the sky, trying to shake off his enemy, but the serpent's hold only tightened. Slowly, the eagle sank back to earth, gasping for breath.</p>
+              <p>A hunter witnessed the unequal combat. In pity for the noble eagle, he rushed up and soon loosened the coiling serpent. The eagle was free at last.</p>
+              <p>The serpent was furious. He had no chance to bite the watchful hunter. Instead, he struck at the drinking horn, hanging at the hunter's belt, and into it released the poison of his fangs.</p>
+              <p>The hunter now, unaware of what the serpent had done, continued on his way. No sooner had the hunter gone a short distance than he became very thirsty and stopped to fill his horn at a spring. As he was about to drink, there was a sudden rush of great wings. Sweeping down, the eagle seized the poisoned horn from his saviour's hands and flew away to hide it where it would never be found.</p>
             </div>
           </div>
         `,
         questions: [
-          {n:36, q:'How many items can be purchased at the restaurant?', c:{A:'1',B:'2',C:'3',D:'4'}, a:'C'},
-          {n:37, q:'On which day will Manila’s restaurant be closed?', c:{A:'Sunday',B:'Monday',C:'Tuesday',D:'Wednesday'}, a:'A'},
-          {n:38, q:'Which food is <u>not</u> sold at Manila’s Restaurant?', c:{A:'pizza',B:'hotdog',C:'chicken',D:'breadsticks'}, a:'B'},
-          {n:39, q:'Which word suggests that you will be served <u>quickly</u> at the restaurant?', c:{A:'prompt',B:'always',C:'affordable',D:'convenient'}, a:'A'},
-          {n:40, q:'Mary wants to enjoy the free deals offered at the restaurant. When should she visit the restaurant?', c:{A:'January 15, 2023',B:'after January 25, 2023',C:'before January 17, 2023',D:'during January 17, 2023 to January 19, 2023'}, a:'D'}
+          {n:36, q:'Who was the eagle\'s enemy in this story?', c:{A:'A saviour',B:'The hunter',C:'The serpent',D:'Another eagle'}, a:'C'},
+          {n:37, q:'Which of the following words has the same meaning as the word "combat" in line 6?', c:{A:'Aid',B:'Win',C:'Play',D:'Fight'}, a:'D'},
+          {n:38, q:'The serpent was "furious" (line 8) mainly because', c:{A:'the hunter saw the combat.',B:'the hunter rescued the eagle.',C:'it was no match for the eagle.',D:'the hunter had a drinking horn.'}, a:'B'},
+          {n:39, q:'Which statement about what happened in the story is <u>false</u>?', c:{A:'The hunter freed the eagle.',B:'The eagle saved the hunter.',C:'The serpent freed the eagle.',D:'The serpent found the eagle.'}, a:'C'},
+          {n:40, q:'Which of the following lessons can we learn from the story?', c:{A:'Always be careful.',B:'Watch out for enemies.',C:'Acts of kindness are often repaid.',D:'Never trust anyone who seems harmless.'}, a:'C'}
         ]
       }
     ];
@@ -724,10 +632,6 @@
 
     async function saveResultToSheet(payload) {
       const saveStatus = document.getElementById('saveStatus');
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL_HERE')) {
-        saveStatus.textContent = 'Results not saved yet. Add your Google Apps Script URL to turn on automatic logging.';
-        return;
-      }
 
       try {
         saveStatus.textContent = 'Saving result...';
@@ -849,7 +753,7 @@
       await saveResultToSheet({
         studentName: studentName,
         parentEmail,
-        testName: 'English Test 1 (NGSA M#2 23 P1)',
+        testName: 'English Test 2 (NGSA 21 P1)',
         score: correct,
         total: progress.total,
         percent: percent,
