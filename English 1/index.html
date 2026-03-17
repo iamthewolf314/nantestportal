@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keenan's Testing Portal</title>
+  <style>
+    :root {
+      --navy: #163a63;
+      --navy-dark: #0f2742;
+      --sky: #eef4fb;
+      --white: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #d7e3f1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #f5f8fc 0%, #eaf1fa 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #214f84 100%);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 14px 36px rgba(15, 39, 66, 0.16);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2.2rem;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,0.92);
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 760px;
+    }
+
+    .info-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+
+    .info-card strong {
+      display: block;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .info-card span {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      margin-bottom: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--navy-dark);
+      font-size: 1.3rem;
+    }
+
+    .tag {
+      background: var(--sky);
+      color: var(--navy-dark);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .test-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #fbfdff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .test-card:hover {
+      transform: translateY(-3px);
+      border-color: #bcd0e8;
+      box-shadow: 0 10px 22px rgba(15, 39, 66, 0.10);
+    }
+
+    .test-card.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+      filter: grayscale(60%);
+      background: #f3f6fa;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .test-card.disabled:hover {
+      transform: none;
+      border-color: var(--border);
+      box-shadow: none;
+    }
+
+    .test-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .test-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin: 0;
+    }
+
+   .pill {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* Status colors */
+.pill.live {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.pill.coming {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.pill.expired {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pill.progress {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+    .test-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 14px;
+      line-height: 1.5;
+    }
+
+    .test-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+    }
+
+    .test-footer strong {
+      color: var(--navy-dark);
+    }
+
+    .launch {
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .footnote {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .grid,
+      .info-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Keenan's Testing Portal</h1>
+      <p>Select the test you need to complete. Each test opens on its own instructions page. The timer begins only when the student clicks the start button inside the test.</p>
+    </div>
+
+    <div class="info-bar">
+      <div class="info-card">
+        <strong>Instructions First</strong>
+        <span>Each test opens to the instructions page before students begin.</span>
+      </div>
+      <div class="info-card">
+        <strong>Timed Tests</strong>
+        <span>Each test can have its own timer and submission rules.</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Available Tests</h2>
+        <div class="tag">Online Exams</div>
+      </div>
+
+      <div class="grid" id="testGrid"></div>
+
+      <p class="footnote">Only <strong>Live</strong> tests are available.</p>
+    </div>
+
+  <script>
+    const tests = [
+  {
+    title: 'English Test 1',
+    href: 'english-test-1.html',
+    status: 'Live',
+    type: 'live',
+    active: true,
+    footerLabel: 'Time:',
+    footerValue: '1 hour'
+  },
+  {
+    title: 'English Test 2',
+    href: 'english-test-2.html',
+    status: 'Coming Soon',
+    type: 'coming',
+    active: false,
+    footerLabel: 'Status:',
+    footerValue: 'Not Available'
+  },
+  {
+    title: 'Math Test 1',
+    href: 'math-test-1.html',
+    status: 'In Progress',
+    type: 'progress',
+    active: false,
+    footerLabel: 'Status:',
+    footerValue: 'Building'
+  },
+  {
+    title: 'Reading Test 1',
+    href: 'reading-test-1.html',
+    status: 'Expired',
+    type: 'expired',
+    active: false,
+    footerLabel: 'Status:',
+    footerValue: 'Closed'
+  }
+];
+
+    const testGrid = document.getElementById('testGrid');
+
+    tests.forEach(test => {
+      const card = document.createElement('a');
+      card.className = 'test-card';
+      card.href = test.active ? test.href : '#';
+
+      if (!test.active) {
+        card.classList.add('disabled');
+      }
+
+      card.innerHTML = `
+        <div class="test-top">
+          <h3 class="test-title">${test.title}</h3>
+          <span class="pill ${test.type}">${test.status}</span>
+        </div>
+        <p class="test-meta">${test.meta}</p>
+        <div class="test-footer">
+          <div><strong>${test.footerLabel}</strong> ${test.footerValue}</div>
+          <div class="launch">${test.active ? 'Open Test →' : 'Locked'}</div>
+        </div>
+      `;
+
+      testGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
